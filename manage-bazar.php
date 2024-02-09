@@ -366,12 +366,13 @@ $result = $stmt->get_result();
                     </div>
                 </div>
 
-                <form method="post" action="./assets/php/update-bazar.php">
+                <form class="update-form">
                     <input type="hidden" name="bazaar_id" value="<?php echo $row['id']; ?>">
                     <input type="text" name="bazaar_opentime" placeholder="Open Time" value="<?php echo $row['bazaar_opentime']; ?>">
                     <input type="text" name="bazaar_closetime" placeholder="Close Time" value="<?php echo $row['bazaar_closetime']; ?>">
                     <input type="text" name="bazaar_result" placeholder="Result" value="<?php echo $row['bazaar_result']; ?>">
-                    <button type="submit">Submit</button>
+                    <button type="button" class="submit-button">Submit</button>
+                    <div class="response-message"></div>
                 </form>
             </div>
         </div>
@@ -603,6 +604,34 @@ $result = $stmt->get_result();
 
     <!-- App js-->
     <script src="assets/js/app.min.js"></script>
+
+    <script>
+$(document).ready(function() {
+    // AJAX form submission
+    $(".submit-button").on("click", function() {
+        var form = $(this).closest("form");
+        var formData = form.serialize();
+
+        $.ajax({
+            type: "POST",
+            url: "./assets/php/update-bazar.php",
+            data: formData,
+            dataType: "json", // Expect JSON response
+            success: function(response) {
+                // Check if the request was successful
+                if (response.success) {
+                    // Display success message
+                    $(".response-message").html('<div class="alert alert-success">' + response.message + '</div>');
+                } else {
+                    // Display error message
+                    $(".response-message").html('<div class="alert alert-danger">' + response.message + '</div>');
+                }
+            }
+        });
+    });
+});
+
+</script>
 
 </body>
 
