@@ -1,5 +1,4 @@
 <?php
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -9,13 +8,10 @@ include_once './auth.php';
 // Check if the user is authenticated
 checkAuthentication();
 
-?>
-<?php
 // fetch-bazaar-info.php
 include_once './db.php';
 
 // Your database connection and session_start() code here
-
 function fetchBazaarInfoById($userId) {
     global $conn;
 
@@ -31,17 +27,16 @@ function fetchBazaarInfoById($userId) {
     $stmt->bind_result($bazaarId, $bazaarName);
 
     // Fetch the results
-    $stmt->fetch();
-
-    // Check if the result is not empty
-    if ($bazaarId !== null) {
-        return [
+    $bazaars = [];
+    while ($stmt->fetch()) {
+        $bazaars[] = [
             'bazaar_id' => $bazaarId,
             'bazaar_name' => $bazaarName,
         ];
-    } else {
-        return null; // Return null if bazaar not found
     }
+
+    // Check if the result is not empty
+    return $bazaars;
 }
 
 // Get user_id from session
@@ -54,8 +49,7 @@ if ($bazaarInfo) {
     // Return the bazaar information as JSON
     echo json_encode([
         'success' => true,
-        'bazaar_id' => $bazaarInfo['bazaar_id'],
-        'bazaar_name' => $bazaarInfo['bazaar_name'],
+        'bazaars' => $bazaarInfo,
     ]);
 } else {
     // Return an error message if bazaar information is not found

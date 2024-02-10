@@ -1,14 +1,3 @@
-<?php
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-include_once './assets/php/auth.php';
-
-// Check if the user is authenticated
-checkAuthentication();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +17,6 @@ checkAuthentication();
 
     <!-- icons -->
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-
 
 </head>
 
@@ -305,7 +293,9 @@ checkAuthentication();
         </div>
         <!-- end Topbar -->
 
+        <!-- ========== Left Sidebar Start ========== -->
         <?php include './assets/components/sidebar.php'; ?>
+
 
         <!-- ============================================================== -->
         <!-- Start Page Content here -->
@@ -319,79 +309,45 @@ checkAuthentication();
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <form method="post" action="j.php">
-                                <div class="form-group">
-                                    <label for="bazaar_id">Bazaar ID:</label>
-                                    <!-- Your HTML select element -->
-                                    <select class="form-control" id="bazaar_id" name="bazaar_id" required>
-    <!-- Options will be dynamically populated using JavaScript -->
-</select>
+                            <h1>Add panel</h1>
+                            <form action="./assets/php/panel-dataadd.php" method="post">
+                                <?php
+                                $days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                                ?>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label>Select Bazaar:</label>
+                                        <select class="form-control" name="bazarid" id="bazarid">
+                                            <!-- Options will be dynamically populated using JavaScript -->
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="weekvalue">Week Value:</label>
+                                        <input type="text" class="form-control" name="weekvalue" id="weekvalue"
+                                            required>
+                                    </div>
+                                    <div class="row">
+                                    <?php
+                                    foreach ($days as $day) {
+                                        echo "<div class=' col-md-4'>";
+                                        echo "<label>{$day}:</label>";
+
+                                        for ($i = 1; $i <= 3; $i++) {
+                                            echo "<input type='text' class='form-control' name='{$day}_{$i}' placeholder='Number {$i}' required>";
+                                            echo "&nbsp;"; // Add some space between inputs
+                                        }
+
+                                        echo "</div>";
+                                    }
+                                    ?>
+                                    </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="week_name">Week Name:</label>
-                                    <input type="text" class="form-control" id="week_name" name="week_name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="mon">Monday:</label>
-                                    <input type="text" class="form-control" id="mon" name="mon" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="tue">Tuesday:</label>
-                                    <input type="text" class="form-control" id="tue" name="tue" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="wed">Wednesday:</label>
-                                    <input type="text" class="form-control" id="wed" name="wed" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="thu">Thursday:</label>
-                                    <input type="text" class="form-control" id="thu" name="thu" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="fri">Friday:</label>
-                                    <input type="text" class="form-control" id="fri" name="fri" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="sat">Saturday:</label>
-                                    <input type="text" class="form-control" id="sat" name="sat" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="sun">Sunday:</label>
-                                    <input type="text" class="form-control" id="sun" name="sun" >
-                                </div>
 
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
-
-                            <?php 
-
-                            include_once './assets/php/db.php';
-
-                             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                                $bazaar_id = $_POST['bazaar_id'];
-                                $week_name = $_POST['week_name'];
-                                $mon = $_POST['mon'];
-                                $tue = $_POST['tue'];
-                                $wed = $_POST['wed'];
-                                $thu = $_POST['thu'];
-                                $fri = $_POST['fri'];
-                                $sat = $_POST['sat'];
-                                $sun = $_POST['sun'];
-                        
-                                $sql = "INSERT INTO jodi (bazaar_id, week_name, mon, tue, wed, thu, fri, sat, sun) 
-                                        VALUES ('$bazaar_id', '$week_name', '$mon', '$tue', '$wed', '$thu', '$fri', '$sat', '$sun')";
-                        
-                                if ($conn->query($sql) === TRUE) {
-                                    echo '<div class="alert alert-success" role="alert">Data inserted successfully</div>';
-                                } else {
-                                    echo '<div class="alert alert-danger" role="alert">Error: ' . $sql . '<br>' . $conn->error . '</div>';
-                                }
-                            }
-
-                            // close the connection
-                            $conn->close();
-                            ?>
                         </div>
                     </div>
                     <!-- end row -->
@@ -598,53 +554,29 @@ checkAuthentication();
 
     <!-- App js -->
     <script src="assets/js/app.min.js"></script>
-
-    <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
-
-
     <script>
-    function fetchBazaarOptions() {
-        console.log("Fetching Bazaar options...");
+        $(document).ready(function () {
+            // Fetch bazaars and populate the dropdown
+            $.ajax({
+                type: "POST",
+                url: "./assets/php/fetch-bazaar-info.php", // Replace with the actual file handling the request
+                dataType: "json",
+                success: function (response) {
+                    if (response.success && response.bazaars.length > 0) {
+                        var dropdown = $("#bazarid");
 
-        // Make AJAX request to fetch Bazaar options
-        $.ajax({
-            type: "POST",
-            url: "./assets/php/fetch-bazaar-info.php", // Replace with the actual file handling the request
-            dataType: "json",
-            success: function (response) {
-                console.log("AJAX Success");
+                        $.each(response.bazaars, function (index, bazaar) {
+                            dropdown.append($("<option>").val(bazaar.bazaar_id).text(bazaar.bazaar_name));
 
-                // Handle the response, populate the dropdown with fetched options
-                if (response.success) {
-                    console.log("Received successful response:", response);
-
-                    // Populate the dropdown with options
-                    var dropdown = $("#bazaar_id");
-                    dropdown.empty(); // Clear existing options
-
-                    // Assuming response is an array of bazaars
-                    $.each(response.bazaars, function (index, bazaar) {
-                        dropdown.append($("<option>").val(bazaar.bazaar_id).text(bazaar.bazaar_name));
-                    });
-
-                    console.log("Dropdown populated with options:", response.bazaars);
-                } else {
-                    // Handle errors if needed
-                    console.error("Received error response:", response.message);
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX Error: " + status + " - " + error);
                 }
-            },
-            error: function (xhr, status, error) {
-                // Handle AJAX errors if needed
-                console.error("AJAX Error: " + status + " - " + error);
-            }
+            });
         });
-    }
-
-    $(document).ready(function () {
-        console.log("Document ready, calling fetchBazaarOptions()");
-        fetchBazaarOptions();
-    });
-</script>
+    </script>
 
 </body>
 

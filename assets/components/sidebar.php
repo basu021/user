@@ -98,6 +98,33 @@
                         <span> Jodi </span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="#panel" data-bs-toggle="collapse">
+                        <i class="mdi mdi-email-outline"></i>
+                        <span> Panel </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="panel">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="./addpanel.php">Add Panel</a>
+                            </li>
+                            <li>
+                                <a href="./managepannel.php">Manage Panel</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="starline.php">
+                        <i class="mdi mdi-forum-outline"></i>
+                        <span> Star Line </span>
+                    </a>
+                </li>
+
+                
             </ul>
 
         </div>
