@@ -302,52 +302,42 @@
                         <div class="col-sm-12">
                             <h1>Add panel</h1>
                             <form action="./assets/php/panel-dataadd.php" method="post">
-                                <div class="form-group col-md-12"><label>Select Bazaar:</label><select class="form-control" name="bazarid" id="bazarid"></select></div>
-                                <div class="form-group col-md-12"><label for="weekvalue">Week Value:</label><input type="text" class="form-control" name="weekvalue" id="weekvalue">
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4"><label>Monday:</label>
-                                        <input type="text" class="form-control" value="1" name="Monday_1" placeholder="Monday 1">
-                                        <input type="text" class="form-control" value="1" name="Monday_2" placeholder="Monday 2">
-                                        <input type="text" class="form-control" value="1" name="Monday_3" placeholder="Monday 3">
-                                    </div>
-                                    <div class="col-md-4"><label>Tuesday:</label>
-                                        <input type="text" class="form-control" value="1" name="Tuesday_1" placeholder="Tuesday 1">
-                                        <input type="text" class="form-control" value="1" name="Tuesday_2" placeholder="Tuesday 2">
-                                        <input type="text" class="form-control" value="1" name="Tuesday_3" placeholder="Tuesday 3">
-                                    </div>
-                                    <div class="col-md-4"><label>Wednesday:</label>
-                                        <input type="text" class="form-control" value="1" name="Wednesday_1" placeholder="Wednesday 1">
-                                        <input type="text" class="form-control" value="1" name="Wednesday_2" placeholder="Wednesday 2">
-                                        <input type="text" class="form-control" value="1" name="Wednesday_3" placeholder="Wednesday 3">
-                                    </div>
-                                    <div class="col-md-4"><label>Thursday:</label>
-                                        <input type="text" class="form-control" value="1" name="Thursday_1" placeholder="Thursday 1">
-                                        <input type="text" class="form-control" value="1" name="Thursday_2" placeholder="Thursday 2">
-                                        <input type="text" class="form-control" value="1" name="Thursday_3" placeholder="Thursday 3">
+    <?php
+    $days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+    ?>
 
-                                    </div>
-                                    <div class="col-md-4"><label>Friday:</label>
-                                        <input type="text" class="form-control" value="1" name="Friday_1" placeholder="Friday 1">
-                                        <input type="text" class="form-control" value="1" name="Friday_2" placeholder="Friday 2">
-                                        <input type="text" class="form-control" value="1" name="Friday_3" placeholder="Friday 3">
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label>Select Bazaar:</label>
+            <select class="form-control" name="bazarid" id="bazarid">
+                <!-- Options will be dynamically populated using JavaScript -->
+            </select>
+        </div>
 
-                                    </div>
-                                    <div class="col-md-4"><label>Saturday:</label>
-                                        <input type="text" class="form-control" value="1" name="Saturday_1" placeholder="Saturday 1">
-                                        <input type="text" class="form-control" value="1" name="Saturday_2" placeholder="Saturday 2">
-                                        <input type="text" class="form-control" value="1" name="Saturday_3" placeholder="Saturday 3">
+        <div class="form-group col-md-12">
+            <label for="weekvalue">Week Value:</label>
+            <input type="text" class="form-control" name="weekvalue" id="weekvalue" required>
+        </div>
+        <div class="row">
+            <?php
+            foreach ($days as $day) {
+                echo "<div class='col-md-4'>";
+                echo "<label>{$day}:</label>";
 
-                                    </div>
-                                    <div class="col-md-4"><label>Sunday:</label>
-                                        <input type="text" class="form-control" value="1" name="Sunday_1" placeholder="Sunday 1">
-                                        <input type="text" class="form-control" value="1" name="Sunday_2" placeholder="Sunday 2">
-                                        <input type="text" class="form-control" value="1" name="Sunday_3" placeholder="Sunday 3">
+                echo "<input type='text' class='form-control' name='{$day}_open' placeholder='{$day} Open' required>";
+                echo "<input type='text' class='form-control' name='{$day}_jodi' placeholder='{$day} Jodi' required>";
+                echo "<input type='text' class='form-control' name='{$day}_close' placeholder='{$day} Close' required>";
 
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
+                echo "</div>";
+            }
+            ?>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
 
                         </div>
                     </div>

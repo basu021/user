@@ -12,12 +12,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dayNumberValues = [];
 
     // Loop through days
-    foreach (["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] as $day) {
+    foreach (["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"] as $day) {
         // Loop through three input fields for each day
         for ($i = 1; $i <= 3; $i++) {
             $fieldName = "{$day}_{$i}";
+    
+            // Adjust the field name based on the loop index
+            if ($i == 1) {
+                $fieldName = "{$day}_open";
+            } elseif ($i == 2) {
+                $fieldName = "{$day}_jodi";
+            } elseif ($i == 3) {
+                $fieldName = "{$day}_close";
+            }
+    
             $number = isset($_POST[$fieldName]) ? $_POST[$fieldName] : null;
-
+    
             // Add the number to the array
             $dayNumberValues[] = $number;
         }
@@ -54,7 +64,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Execute the statement
         if ($stmt->execute()) {
             // Data insertion successful
-            echo json_encode(['success' => true, 'message' => 'Data successfully stored in the database.']);
+            // echo json_encode(['success' => true, 'message' => 'Data successfully stored in the database.']);
+            echo "<script>alert('Successfully Added the Values');";
+            echo "window.location.href = document.referrer;</script>";
+            
         } else {
             // Data insertion failed
             echo json_encode(['success' => false, 'message' => 'Error storing data in the database.']);
