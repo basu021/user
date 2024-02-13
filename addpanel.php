@@ -302,40 +302,40 @@
                         <div class="col-sm-12">
                             <h1>Add panel</h1>
                             <form action="./assets/php/panel-dataadd.php" method="post">
-    <?php
-    $days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
-    ?>
+                                <?php
+                                $days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+                                ?>
 
-    <div class="form-row">
-        <div class="form-group col-md-12">
-            <label>Select Bazaar:</label>
-            <select class="form-control" name="bazarid" id="bazarid">
-                <!-- Options will be dynamically populated using JavaScript -->
-            </select>
-        </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label>Select Bazaar:</label>
+                                        <select class="form-control" name="bazarid" id="bazarid">
+                                            <!-- Options will be dynamically populated using JavaScript -->
+                                        </select>
+                                    </div>
 
-        <div class="form-group col-md-12">
-            <label for="weekvalue">Week Value:</label>
-            <input type="text" class="form-control" name="weekvalue" id="weekvalue" required>
-        </div>
-        <div class="row">
-            <?php
-            foreach ($days as $day) {
-                echo "<div class='col-md-4'>";
-                echo "<label>{$day}:</label>";
+                                    <div class="form-group col-md-12">
+                                        <label for="weekvalue">Week Value:</label>
+                                        <input type="text" class="form-control" name="weekvalue" id="weekvalue" required>
+                                    </div>
+                                    <div class="row">
+                                        <?php
+                                        foreach ($days as $day) {
+                                            echo "<div class='col-md-4'>";
+                                            echo "<label>{$day}:</label>";
 
-                echo "<input type='text' class='form-control' name='{$day}_open' placeholder='{$day} Open' required>";
-                echo "<input type='text' class='form-control' name='{$day}_jodi' placeholder='{$day} Jodi' required>";
-                echo "<input type='text' class='form-control' name='{$day}_close' placeholder='{$day} Close' required>";
+                                            echo "<input type='text' class='form-control' name='{$day}_open' id='{$day}_open' placeholder='{$day} Open' required>";
+                                            echo "<input type='text' class='form-control' name='{$day}_jodi' id='{$day}_jodi' placeholder='{$day} Jodi' required>";
+                                            echo "<input type='text' class='form-control' name='{$day}_close' id='{$day}_close' placeholder='{$day} Close' required>";
 
-                echo "</div>";
-            }
-            ?>
-        </div>
-    </div>
+                                            echo "</div>";
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
 
 
 
@@ -551,6 +551,98 @@
                 }
             });
         });
+
+    //     $(document).ready(function () {
+    //     // Function to calculate the sum of digits
+    //     function calculateSumOfDigits(value) {
+    //         return value.toString().split('').reduce(function (acc, digit) {
+    //             return acc + parseInt(digit);
+    //         }, 0);
+    //     }
+
+    //     // Function to get the rightmost digit
+    //     function getRightmostDigit(value) {
+    //         return parseInt(value.toString().slice(-1));
+    //     }
+
+    //     // Event listener for open and close input fields
+    //     $('.form-row input[id$="_open"], .form-row input[id$="_close"]').on('input', function () {
+    //         var day = $(this).attr('id').split('_')[0];
+    //         var openSum = calculateSumOfDigits($('#' + day + '_open').val());
+    //         var closeSum = 0;
+
+    //         var closeValue = $('#' + day + '_close').val();
+    //         if (closeValue) {
+    //             closeSum = calculateSumOfDigits(closeValue);
+    //         }
+
+    //         // Set the jodi value
+    //         $('#' + day + '_jodi').val('' + getRightmostDigit(openSum) + getRightmostDigit(closeSum));
+    //     });
+    // });
+
+    // $(document).ready(function () {
+    //     // Function to calculate the sum of digits
+    //     function calculateSumOfDigits(value) {
+    //         return value.toString().split('').reduce(function (acc, digit) {
+    //             return acc + parseInt(digit);
+    //         }, 0);
+    //     }
+
+    //     // Function to get the rightmost digit
+    //     function getRightmostDigit(value) {
+    //         return parseInt(value.toString().slice(-1));
+    //     }
+
+    //     // Event listener for open and close input fields
+    //     $('.form-row input[id$="_open"], .form-row input[id$="_close"]').on('input', function () {
+    //         var day = $(this).attr('id').split('_')[0];
+    //         var openSum = calculateSumOfDigits($('#' + day + '_open').val());
+    //         var closeSum = 0;
+
+    //         var closeValue = $('#' + day + '_close').val();
+    //         if (closeValue) {
+    //             closeSum = calculateSumOfDigits(closeValue);
+    //         }
+
+    //         // Set the jodi value
+    //         $('#' + day + '_jodi').val('' + getRightmostDigit(openSum) + getRightmostDigit(closeSum));
+    //     });
+    // });
+
+    $(document).ready(function () {
+    // Function to calculate the sum of digits
+    function calculateSumOfDigits(value) {
+        return value.toString().split('').reduce(function (acc, digit) {
+            return acc + parseInt(digit);
+        }, 0);
+    }
+
+    // Function to get the rightmost digit
+    function getRightmostDigit(value) {
+        return parseInt(value.toString().slice(-1));
+    }
+
+    // Event listener for open and close input fields
+    $('.form-row input[id$="_open"], .form-row input[id$="_close"]').on('input', function () {
+        var day = $(this).attr('id').split('_')[0];
+        var openSum = calculateSumOfDigits($('#' + day + '_open').val());
+        var closeSum = 0;
+
+        var closeValue = $('#' + day + '_close').val();
+        if (closeValue) {
+            closeSum = calculateSumOfDigits(closeValue);
+        }
+
+        // Set the jodi value based on the condition
+        if (closeValue) {
+            $('#' + day + '_jodi').val('' + getRightmostDigit(openSum) + getRightmostDigit(closeSum));
+        } else {
+            $('#' + day + '_jodi').val(getRightmostDigit(openSum));
+        }
+    });
+});
+    
     </script>
 
 </body>
