@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dayNumberValues = [];
 
     // Loop through days
-    foreach (["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] as $day) {
+    foreach (["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] as $day) {
         // Loop through three input fields for each day
         for ($i = 1; $i <= 3; $i++) {
             $fieldName = "{$day}_{$i}";
@@ -23,37 +23,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Convert the dayNumberValues array to a JSON string and store it in the database
-    $jsonValues = json_encode($dayNumberValues);
-
-    // Prepare and execute the SQL query
-    $stmt = $conn->prepare("INSERT INTO panel (weekvalue, bazar_id, Monday_1, Monday_2, Monday_3, Tuesday_1, Tuesday_2, Tuesday_3, Wednesday_1, Wednesday_2, Wednesday_3, Thursday_1, Thursday_2, Thursday_3, Friday_1, Friday_2, Friday_3, Saturday_1, Saturday_2, Saturday_3) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-    // Determine the number of placeholders needed in the type definition string
-    $placeholders = count($dayNumberValues);
+    // Prepare the SQL query
+    $sql = "INSERT INTO panel (weekvalue, bazar_id, 
+              monday_open, monday_jodi, monday_close, 
+              tuesday_open, tuesday_jodi, tuesday_close, 
+              wednesday_open, wednesday_jodi, wednesday_close, 
+              thursday_open, thursday_jodi, thursday_close, 
+              friday_open, friday_jodi, friday_close, 
+              saturday_open, saturday_jodi, saturday_close, 
+              sunday_open, sunday_jodi, sunday_close) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     // Generate the type definition string dynamically
-    $typeDefinition = 'si' . str_repeat('i', $placeholders);
+    $typeDefinition = 'ss' . str_repeat('s', count($dayNumberValues));
 
     // Bind parameters for the SQL query
-    $stmt->bind_param($typeDefinition, $weekValue, $bazarId, ...$dayNumberValues);
-
-    // Execute the statement
-    if ($stmt->execute()) {
-        // Data insertion successful
-        echo json_encode(['success' => true, 'message' => 'Data successfully stored in the database.']);
-    } else {
-        // Data insertion failed
-        echo json_encode(['success' => false, 'message' => 'Error storing data in the database.']);
+    $bindParams = [$typeDefinition, &$weekValue, &$bazarId];
+    foreach ($dayNumberValues as &$value) {
+        $bindParams[] = &$value;
     }
 
-    // Close the statement
-    $stmt->close();
+    // Prepare and execute the SQL query
+    $stmt = $conn->prepare($sql);
+
+    // Check if the statement preparation is successful
+    if ($stmt !== false) {
+        // Bind parameters using call_user_func_array
+        call_user_func_array(array($stmt, 'bind_param'), $bindParams);
+
+        // Execute the statement
+        if ($stmt->execute()) {
+            // Data insertion successful
+            echo json_encode(['success' => true, 'message' => 'Data successfully stored in the database.']);
+        } else {
+            // Data insertion failed
+            echo json_encode(['success' => false, 'message' => 'Error storing data in the database.']);
+        }
+
+        // Close the statement
+        $stmt->close();
+    } else {
+        // Statement preparation failed
+        echo json_encode(['success' => false, 'message' => 'Error preparing the SQL statement.']);
+    }
+
+    // Close the database connection
+    $conn->close();
 } else {
     // If the form was not submitted using POST method
     echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
 }
-
-// Close the database connection
-$conn->close(); 
 ?>

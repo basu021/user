@@ -22,9 +22,7 @@
 
 <!-- body start -->
 
-<body class="loading" data-layout-color="light" data-layout-mode="default" data-layout-size="fluid"
-    data-topbar-color="light" data-leftbar-position="fixed" data-leftbar-color="light" data-leftbar-size='default'
-    data-sidebar-user='true'>
+<body class="loading" data-layout-color="light" data-layout-mode="default" data-layout-size="fluid" data-topbar-color="light" data-leftbar-position="fixed" data-leftbar-color="light" data-leftbar-size='default' data-sidebar-user='true'>
 
     <!-- Begin page -->
     <div id="wrapper">
@@ -75,8 +73,7 @@
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <div class="d-flex align-items-start">
-                                            <img class="d-flex me-2 rounded-circle" src="assets/images/users/user-2.jpg"
-                                                alt="Generic placeholder image" height="32">
+                                            <img class="d-flex me-2 rounded-circle" src="assets/images/users/user-2.jpg" alt="Generic placeholder image" height="32">
                                             <div class="w-100">
                                                 <h5 class="m-0 font-14">Erwin E. Brown</h5>
                                                 <span class="font-12 mb-0">UI Designer</span>
@@ -87,8 +84,7 @@
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <div class="d-flex align-items-start">
-                                            <img class="d-flex me-2 rounded-circle" src="assets/images/users/user-5.jpg"
-                                                alt="Generic placeholder image" height="32">
+                                            <img class="d-flex me-2 rounded-circle" src="assets/images/users/user-5.jpg" alt="Generic placeholder image" height="32">
                                             <div class="w-100">
                                                 <h5 class="m-0 font-14">Jacob Deo</h5>
                                                 <span class="font-12 mb-0">Developer</span>
@@ -103,21 +99,18 @@
                 </li>
 
                 <li class="dropdown d-inline-block d-lg-none">
-                    <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-bs-toggle="dropdown"
-                        href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                         <i class="fe-search noti-icon"></i>
                     </a>
                     <div class="dropdown-menu dropdown-lg dropdown-menu-end p-0">
                         <form class="p-3">
-                            <input type="text" class="form-control" placeholder="Search ..."
-                                aria-label="Recipient's username">
+                            <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
                         </form>
                     </div>
                 </li>
 
                 <li class="dropdown notification-list topbar-dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#"
-                        role="button" aria-haspopup="false" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                         <i class="fe-bell noti-icon"></i>
                         <span class="badge bg-danger rounded-circle noti-icon-badge">9</span>
                     </a>
@@ -201,8 +194,7 @@
                         </div>
 
                         <!-- All-->
-                        <a href="javascript:void(0);"
-                            class="dropdown-item text-center text-primary notify-item notify-all">
+                        <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
                             View all
                             <i class="fe-arrow-right"></i>
                         </a>
@@ -211,8 +203,7 @@
                 </li>
 
                 <li class="dropdown notification-list topbar-dropdown">
-                    <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown"
-                        href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                         <img src="assets/images/users/user-1.jpg" alt="user-image" class="rounded-circle">
                         <span class="pro-user-name ms-1">
                             theuser <i class="mdi mdi-chevron-down"></i>
@@ -311,43 +302,53 @@
                         <div class="col-sm-12">
                             <h1>Add panel</h1>
                             <form action="./assets/php/panel-dataadd.php" method="post">
-                                <?php
-                                $days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-                                ?>
-
-                                <div class="form-row">
-                                    <div class="form-group col-md-12">
-                                        <label>Select Bazaar:</label>
-                                        <select class="form-control" name="bazarid" id="bazarid">
-                                            <!-- Options will be dynamically populated using JavaScript -->
-                                        </select>
+                                <div class="form-group col-md-12"><label>Select Bazaar:</label><select class="form-control" name="bazarid" id="bazarid"></select></div>
+                                <div class="form-group col-md-12"><label for="weekvalue">Week Value:</label><input type="text" class="form-control" name="weekvalue" id="weekvalue">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4"><label>Monday:</label>
+                                        <input type="text" class="form-control" value="1" name="Monday_1" placeholder="Monday 1">
+                                        <input type="text" class="form-control" value="1" name="Monday_2" placeholder="Monday 2">
+                                        <input type="text" class="form-control" value="1" name="Monday_3" placeholder="Monday 3">
                                     </div>
-
-                                    <div class="form-group col-md-12">
-                                        <label for="weekvalue">Week Value:</label>
-                                        <input type="text" class="form-control" name="weekvalue" id="weekvalue"
-                                            required>
+                                    <div class="col-md-4"><label>Tuesday:</label>
+                                        <input type="text" class="form-control" value="1" name="Tuesday_1" placeholder="Tuesday 1">
+                                        <input type="text" class="form-control" value="1" name="Tuesday_2" placeholder="Tuesday 2">
+                                        <input type="text" class="form-control" value="1" name="Tuesday_3" placeholder="Tuesday 3">
                                     </div>
-                                    <div class="row">
-                                    <?php
-                                    foreach ($days as $day) {
-                                        echo "<div class=' col-md-4'>";
-                                        echo "<label>{$day}:</label>";
+                                    <div class="col-md-4"><label>Wednesday:</label>
+                                        <input type="text" class="form-control" value="1" name="Wednesday_1" placeholder="Wednesday 1">
+                                        <input type="text" class="form-control" value="1" name="Wednesday_2" placeholder="Wednesday 2">
+                                        <input type="text" class="form-control" value="1" name="Wednesday_3" placeholder="Wednesday 3">
+                                    </div>
+                                    <div class="col-md-4"><label>Thursday:</label>
+                                        <input type="text" class="form-control" value="1" name="Thursday_1" placeholder="Thursday 1">
+                                        <input type="text" class="form-control" value="1" name="Thursday_2" placeholder="Thursday 2">
+                                        <input type="text" class="form-control" value="1" name="Thursday_3" placeholder="Thursday 3">
 
-                                        for ($i = 1; $i <= 3; $i++) {
-                                            echo "<input type='text' class='form-control' name='{$day}_{$i}' placeholder='Number {$i}' required>";
-                                            echo "&nbsp;"; // Add some space between inputs
-                                        }
+                                    </div>
+                                    <div class="col-md-4"><label>Friday:</label>
+                                        <input type="text" class="form-control" value="1" name="Friday_1" placeholder="Friday 1">
+                                        <input type="text" class="form-control" value="1" name="Friday_2" placeholder="Friday 2">
+                                        <input type="text" class="form-control" value="1" name="Friday_3" placeholder="Friday 3">
 
-                                        echo "</div>";
-                                    }
-                                    ?>
+                                    </div>
+                                    <div class="col-md-4"><label>Saturday:</label>
+                                        <input type="text" class="form-control" value="1" name="Saturday_1" placeholder="Saturday 1">
+                                        <input type="text" class="form-control" value="1" name="Saturday_2" placeholder="Saturday 2">
+                                        <input type="text" class="form-control" value="1" name="Saturday_3" placeholder="Saturday 3">
+
+                                    </div>
+                                    <div class="col-md-4"><label>Sunday:</label>
+                                        <input type="text" class="form-control" value="1" name="Sunday_1" placeholder="Sunday 1">
+                                        <input type="text" class="form-control" value="1" name="Sunday_2" placeholder="Sunday 2">
+                                        <input type="text" class="form-control" value="1" name="Sunday_3" placeholder="Sunday 3">
+
                                     </div>
                                 </div>
-
-
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
+
                         </div>
                     </div>
                     <!-- end row -->
@@ -362,8 +363,9 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-6">
-                            <script>document.write(new Date().getFullYear())</script> &copy; SattaMatka By <a
-                                href="">Uss</a>
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> &copy; SattaMatka By <a href="">Uss</a>
                         </div>
                         <div class="col-md-6">
                             <div class="text-md-end footer-links d-none d-sm-block">
@@ -411,27 +413,23 @@
 
                         <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Color Scheme</h6>
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="layout-color" value="light"
-                                id="light-mode-check" checked />
+                            <input type="checkbox" class="form-check-input" name="layout-color" value="light" id="light-mode-check" checked />
                             <label class="form-check-label" for="light-mode-check">Light Mode</label>
                         </div>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="layout-color" value="dark"
-                                id="dark-mode-check" />
+                            <input type="checkbox" class="form-check-input" name="layout-color" value="dark" id="dark-mode-check" />
                             <label class="form-check-label" for="dark-mode-check">Dark Mode</label>
                         </div>
 
                         <!-- Width -->
                         <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Width</h6>
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="layout-size" value="fluid" id="fluid"
-                                checked />
+                            <input type="checkbox" class="form-check-input" name="layout-size" value="fluid" id="fluid" checked />
                             <label class="form-check-label" for="fluid-check">Fluid</label>
                         </div>
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="layout-size" value="boxed"
-                                id="boxed" />
+                            <input type="checkbox" class="form-check-input" name="layout-size" value="boxed" id="boxed" />
                             <label class="form-check-label" for="boxed-check">Boxed</label>
                         </div>
 
@@ -439,14 +437,12 @@
                         <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Menus (Leftsidebar and Topbar) Positon</h6>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="leftbar-position" value="fixed"
-                                id="fixed-check" checked />
+                            <input type="checkbox" class="form-check-input" name="leftbar-position" value="fixed" id="fixed-check" checked />
                             <label class="form-check-label" for="fixed-check">Fixed</label>
                         </div>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="leftbar-position" value="scrollable"
-                                id="scrollable-check" />
+                            <input type="checkbox" class="form-check-input" name="leftbar-position" value="scrollable" id="scrollable-check" />
                             <label class="form-check-label" for="scrollable-check">Scrollable</label>
                         </div>
 
@@ -454,26 +450,22 @@
                         <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Left Sidebar Color</h6>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="leftbar-color" value="light"
-                                id="light" />
+                            <input type="checkbox" class="form-check-input" name="leftbar-color" value="light" id="light" />
                             <label class="form-check-label" for="light-check">Light</label>
                         </div>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="leftbar-color" value="dark" id="dark"
-                                checked />
+                            <input type="checkbox" class="form-check-input" name="leftbar-color" value="dark" id="dark" checked />
                             <label class="form-check-label" for="dark-check">Dark</label>
                         </div>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="leftbar-color" value="brand"
-                                id="brand" />
+                            <input type="checkbox" class="form-check-input" name="leftbar-color" value="brand" id="brand" />
                             <label class="form-check-label" for="brand-check">Brand</label>
                         </div>
 
                         <div class="form-check form-switch mb-3">
-                            <input type="checkbox" class="form-check-input" name="leftbar-color" value="gradient"
-                                id="gradient" />
+                            <input type="checkbox" class="form-check-input" name="leftbar-color" value="gradient" id="gradient" />
                             <label class="form-check-label" for="gradient-check">Gradient</label>
                         </div>
 
@@ -481,21 +473,18 @@
                         <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Left Sidebar Size</h6>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="leftbar-size" value="default"
-                                id="default-size-check" checked />
+                            <input type="checkbox" class="form-check-input" name="leftbar-size" value="default" id="default-size-check" checked />
                             <label class="form-check-label" for="default-size-check">Default</label>
                         </div>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="leftbar-size" value="condensed"
-                                id="condensed-check" />
+                            <input type="checkbox" class="form-check-input" name="leftbar-size" value="condensed" id="condensed-check" />
                             <label class="form-check-label" for="condensed-check">Condensed <small>(Extra Small
                                     size)</small></label>
                         </div>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="leftbar-size" value="compact"
-                                id="compact-check" />
+                            <input type="checkbox" class="form-check-input" name="leftbar-size" value="compact" id="compact-check" />
                             <label class="form-check-label" for="compact-check">Compact <small>(Small
                                     size)</small></label>
                         </div>
@@ -504,8 +493,7 @@
                         <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Sidebar User Info</h6>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="sidebar-user" value="true"
-                                id="sidebaruser-check" />
+                            <input type="checkbox" class="form-check-input" name="sidebar-user" value="true" id="sidebaruser-check" />
                             <label class="form-check-label" for="sidebaruser-check">Enable</label>
                         </div>
 
@@ -514,21 +502,18 @@
                         <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Topbar</h6>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="topbar-color" value="dark"
-                                id="darktopbar-check" checked />
+                            <input type="checkbox" class="form-check-input" name="topbar-color" value="dark" id="darktopbar-check" checked />
                             <label class="form-check-label" for="darktopbar-check">Dark</label>
                         </div>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="topbar-color" value="light"
-                                id="lighttopbar-check" />
+                            <input type="checkbox" class="form-check-input" name="topbar-color" value="light" id="lighttopbar-check" />
                             <label class="form-check-label" for="lighttopbar-check">Light</label>
                         </div>
 
                         <div class="d-grid mt-4">
                             <button class="btn btn-primary" id="resetBtn">Reset to Default</button>
-                            <a href="https://1.envato.market/admintoadmin" class="btn btn-danger mt-3"
-                                target="_blank"><i class="mdi mdi-basket me-1"></i> Purchase Now</a>
+                            <a href="https://1.envato.market/admintoadmin" class="btn btn-danger mt-3" target="_blank"><i class="mdi mdi-basket me-1"></i> Purchase Now</a>
                         </div>
 
                     </div>
@@ -555,23 +540,23 @@
     <!-- App js -->
     <script src="assets/js/app.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             // Fetch bazaars and populate the dropdown
             $.ajax({
                 type: "POST",
                 url: "./assets/php/fetch-bazaar-info.php", // Replace with the actual file handling the request
                 dataType: "json",
-                success: function (response) {
+                success: function(response) {
                     if (response.success && response.bazaars.length > 0) {
                         var dropdown = $("#bazarid");
 
-                        $.each(response.bazaars, function (index, bazaar) {
+                        $.each(response.bazaars, function(index, bazaar) {
                             dropdown.append($("<option>").val(bazaar.bazaar_id).text(bazaar.bazaar_name));
 
                         });
                     }
                 },
-                error: function (xhr, status, error) {
+                error: function(xhr, status, error) {
                     console.error("AJAX Error: " + status + " - " + error);
                 }
             });
