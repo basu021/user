@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 function checkAuthentication() {
     if (!isset($_SESSION['user_id'])) {
         // User is not authenticated, redirect to login page
-        header('Location: ./login.html');
+        header('Location: login.html');
         exit();
     }
 }

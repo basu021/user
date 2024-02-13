@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     } else {
         // Invalid credentials, redirect to login page
-        header('Location: login.html');
+        header('Location: ../../login.html');
         exit();
     }
 }
