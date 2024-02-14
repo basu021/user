@@ -316,10 +316,11 @@
                                     </div>
 
                                     <div class="form-group col-md-12">
-    <label>Select Week:</label>
-    <select class="form-control" name="selectedWeek" id="selectedWeek">
-        <!-- Options will be dynamically populated using JavaScript -->
-    </select>
+                                    <label>Select Week:</label>
+<select class="form-control" name="selectedWeek" id="selectedWeek">
+    <!-- Options will be dynamically populated using JavaScript -->
+</select>
+    
 </div>
                                     <div class="row">
                                         <?php
@@ -535,38 +536,38 @@
     <script>
        
 
-//     $(document).ready(function () {
-//     // Function to calculate the sum of digits
-//     function calculateSumOfDigits(value) {
-//         return value.toString().split('').reduce(function (acc, digit) {
-//             return acc + parseInt(digit);
-//         }, 0);
-//     }
+    $(document).ready(function () {
+    // Function to calculate the sum of digits
+    function calculateSumOfDigits(value) {
+        return value.toString().split('').reduce(function (acc, digit) {
+            return acc + parseInt(digit);
+        }, 0);
+    }
 
-//     // Function to get the rightmost digit
-//     function getRightmostDigit(value) {
-//         return parseInt(value.toString().slice(-1));
-//     }
+    // Function to get the rightmost digit
+    function getRightmostDigit(value) {
+        return parseInt(value.toString().slice(-1));
+    }
 
-//     // Event listener for open and close input fields
-//     $('.form-row input[id$="_open"], .form-row input[id$="_close"]').on('input', function () {
-//         var day = $(this).attr('id').split('_')[0];
-//         var openSum = calculateSumOfDigits($('#' + day + '_open').val());
-//         var closeSum = 0;
+    // Event listener for open and close input fields
+    $('.form-row input[id$="_open"], .form-row input[id$="_close"]').on('input', function () {
+        var day = $(this).attr('id').split('_')[0];
+        var openSum = calculateSumOfDigits($('#' + day + '_open').val());
+        var closeSum = 0;
 
-//         var closeValue = $('#' + day + '_close').val();
-//         if (closeValue) {
-//             closeSum = calculateSumOfDigits(closeValue);
-//         }
+        var closeValue = $('#' + day + '_close').val();
+        if (closeValue) {
+            closeSum = calculateSumOfDigits(closeValue);
+        }
 
-//         // Set the jodi value based on the condition
-//         if (closeValue) {
-//             $('#' + day + '_jodi').val('' + getRightmostDigit(openSum) + getRightmostDigit(closeSum));
-//         } else {
-//             $('#' + day + '_jodi').val(getRightmostDigit(openSum));
-//         }
-//     });
-// });
+        // Set the jodi value based on the condition
+        if (closeValue) {
+            $('#' + day + '_jodi').val('' + getRightmostDigit(openSum) + getRightmostDigit(closeSum));
+        } else {
+            $('#' + day + '_jodi').val(getRightmostDigit(openSum));
+        }
+    });
+});
 $(document).ready(function () {
     // Fetch bazaars and populate the dropdown
     $.ajax({
@@ -590,28 +591,43 @@ $(document).ready(function () {
         }
     });
 
+    
     // Event listener for the Bazaar dropdown
     $('#bazarid').on('change', function () {
         var selectedBazarId = $(this).val();
 
         // Fetch weeks based on the selected Bazaar
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: "./assets/php/fetch-weeks.php",
-            data: { bazarId: selectedBazarId },
+            data: { bazarid: selectedBazarId },
             success: function (response) {
                 var weekDropdown = $("#selectedWeek");
                 weekDropdown.empty();
 
-                // Append fetched weeks to the dropdown
-                if (response) {
+                // Check if the response is a string
+                if (typeof response === 'string') {
+                    // Try to parse the string into an array
+                    try {
+                        response = JSON.parse(response);
+                    } catch (e) {
+                        console.error("Error parsing response string:", e);
+                    }
+                }
+
+                // Check if the response is an array
+                if (Array.isArray(response)) {
+                    console.log("Response is an array. Number of weeks:", response.length);
                     $.each(response, function (index, week) {
                         weekDropdown.append($("<option>").val(week).text(week));
                     });
-
-                    // Trigger the change event for the Week dropdown to fetch panel data initially
-                    weekDropdown.trigger('change');
+                } else {
+                    console.error("Invalid response format for weeks");
+                    console.log("Response Content:", response);
                 }
+
+                // Trigger the change event for the Week dropdown to fetch panel data initially
+                weekDropdown.trigger('change');
             },
             error: function (xhr, status, error) {
                 console.error("AJAX Error: " + status + " - " + error);
@@ -626,16 +642,45 @@ $(document).ready(function () {
 
         // Fetch and display panel data based on selected Bazaar and Week
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: "./assets/php/fetch-panel-data.php",
-            data: { bazarId: selectedBazarId, weekValue: selectedWeek },
+            data: { bazarid: selectedBazarId, weekValue: selectedWeek },
             success: function (panelData) {
                 // Update your form elements with the fetched data
                 // For example, you can update Monday open, jodi, close values
                 $('#monday_open').val(panelData.monday_open);
                 $('#monday_jodi').val(panelData.monday_jodi);
                 $('#monday_close').val(panelData.monday_close);
-                // Repeat this for other days as needed
+                
+                // Update Tuesday open, jodi, close values
+                $('#tuesday_open').val(panelData.tuesday_open);
+                $('#tuesday_jodi').val(panelData.tuesday_jodi);
+                $('#tuesday_close').val(panelData.tuesday_close);
+
+                // Update Wednesday open, jodi, close values
+                $('#wednesday_open').val(panelData.wednesday_open);
+                $('#wednesday_jodi').val(panelData.wednesday_jodi);
+                $('#wednesday_close').val(panelData.wednesday_close);
+
+                // Update Thursday open, jodi, close values
+                $('#thursday_open').val(panelData.thursday_open);
+                $('#thursday_jodi').val(panelData.thursday_jodi);
+                $('#thursday_close').val(panelData.thursday_close);
+
+                // Update Friday open, jodi, close values
+                $('#friday_open').val(panelData.friday_open);
+                $('#friday_jodi').val(panelData.friday_jodi);
+                $('#friday_close').val(panelData.friday_close);
+
+                // Update Saturday open, jodi, close values
+                $('#saturday_open').val(panelData.saturday_open);
+                $('#saturday_jodi').val(panelData.saturday_jodi);
+                $('#saturday_close').val(panelData.saturday_close);
+
+                // Update Sunday open, jodi, close values
+                $('#sunday_open').val(panelData.sunday_open);
+                $('#sunday_jodi').val(panelData.sunday_jodi);
+                $('#sunday_close').val(panelData.sunday_close);
             },
             error: function (xhr, status, error) {
                 console.error("AJAX Error: " + status + " - " + error);

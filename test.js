@@ -29,8 +29,8 @@ function calculateJodi(openValue, closeValue) {
 }
 
 // Example usage:
-var saturdayOpen = "55"; // Replace with your open value
-var saturdayClose = "554545"; // Replace with your close value, or leave it empty
+var dayOpen = "123"; // Replace with your open value
+var dayClose = "232"; // Replace with your close value, or leave it empty
 
-var saturdayJodi = calculateJodi(saturdayOpen, saturdayClose);
-console.log("Saturday Jodi: " + saturdayJodi);
+var dayJodi = calculateJodi(dayOpen, dayClose);
+console.log("day Jodi: " + dayJodi);
