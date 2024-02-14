@@ -93,9 +93,9 @@
                 </li>
 
                 <li>
-                    <a href="j.php">
+                    <a href="j.php" >
                         <i class="mdi mdi-forum-outline"></i>
-                        <span> Jodi </span>
+                        <span> Jodi (Useless dont use)</span>
                     </a>
                 </li>
 
