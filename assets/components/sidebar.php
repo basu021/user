@@ -93,16 +93,9 @@
                 </li>
 
                 <li>
-                    <a href="j.php" >
-                        <i class="mdi mdi-forum-outline"></i>
-                        <span> Jodi (Useless dont use)</span>
-                    </a>
-                </li>
-
-                <li>
                     <a href="#panel" data-bs-toggle="collapse">
                         <i class="mdi mdi-email-outline"></i>
-                        <span> Panel </span>
+                        <span> Panel & Jodi</span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="panel">

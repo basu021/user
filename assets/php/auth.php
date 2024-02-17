@@ -10,6 +10,11 @@ function checkAuthentication() {
         header('Location: login.html');
         exit();
     }
+// Check if user role is not admin or superadmin
+if ($_SESSION['user_role'] != "admin" && $_SESSION['user_role'] != "superadmin") {
+    header('Location: i.html');
+    exit();
+}
 }
 
 // Call this function at the beginning of any page that requires authentication
