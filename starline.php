@@ -277,7 +277,7 @@
 
             <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
                 <li>
-                    <button class="button-menu-mobile disable-btn waves-effect">
+                    <button class="button-menu-mobile disable-btn waves-effect" onclick="toggleLeftSideMenu()">
                         <i class="fe-menu"></i>
                     </button>
                 </li>
@@ -606,6 +606,22 @@
     });
 </script>
 
+<script type="text/javascript">
+    function toggleLeftSideMenu() {
+var leftSideMenu = document.querySelector('.left-side-menu');
+if (leftSideMenu.style.display === 'none' || leftSideMenu.style.display === '') {
+leftSideMenu.style.display = 'block';
+} else {
+leftSideMenu.style.display = 'none';
+}
+}
+$(document).ready(function() {
+$('#toggleButton').click(function() {
+$('.left-side-menu').toggle();
+});
+});
+
+</script>
 
 </body>
 

@@ -276,9 +276,9 @@ checkAuthentication();
 
                     <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
                         <li>
-                            <button class="button-menu-mobile disable-btn waves-effect">
-                                <i class="fe-menu"></i>
-                            </button>
+                        <button class="button-menu-mobile disable-btn waves-effect" onclick="toggleLeftSideMenu()">
+    <i class="fe-menu"></i>
+</button>
                         </li>
     
                         <li>
@@ -337,8 +337,35 @@ checkAuthentication();
                                             </div>
     
                                             <div class="widget-detail-1 text-end">
-                                                <h2 class="fw-normal pt-2 mb-1"> 256 </h2>
-                                                <p class="text-muted mb-1">Revenue today</p>
+                                                <h2 class="fw-normal pt-2 mb-1"> 
+
+                                                <?php 
+                                                include_once './assets/php/db.php';
+
+                                                $userId = $_SESSION['user_id'];
+                                                $query = "SELECT count(*) FROM bazaar WHERE bazaar_access_to_users = ?";
+                                                
+                                                $stmt = $conn->prepare($query);
+                                                $stmt->bind_param('i', $userId); // Use $userId directly, no need for $_SESSION['user_id']
+                                                $stmt->execute();
+                                                $result = $stmt->get_result();
+                                                
+                                                // Now you can fetch the result as needed
+                                                $row = $result->fetch_assoc();
+                                                $count = $row['count(*)'];
+                                                
+                                                // Use $count as needed
+                                                
+                                                echo $count;
+
+                                                $stmt->close();
+                                                $conn->close();
+
+                                                
+                                                ?>
+                                                    
+                                            </h2>
+                                                <p class="text-muted mb-1">Total Bazar</p>
                                             </div>
                                         </div>
                                     </div>
@@ -665,6 +692,25 @@ checkAuthentication();
 
         <!-- App js-->
         <script src="assets/js/app.min.js"></script>
+
+        <script type="text/javascript">
+            function toggleLeftSideMenu() {
+    var leftSideMenu = document.querySelector('.left-side-menu');
+    if (leftSideMenu.style.display === 'none' || leftSideMenu.style.display === '') {
+        leftSideMenu.style.display = 'block';
+    } else {
+        leftSideMenu.style.display = 'none';
+    }
+}
+$(document).ready(function() {
+    $('#toggleButton').click(function() {
+        $('.left-side-menu').toggle();
+    });
+});
+
+        </script>
+
+        
 
     </body>
 </html>

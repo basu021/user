@@ -324,9 +324,9 @@
                                             echo "<div class='col-md-4'>";
                                             echo "<label>{$day}:</label>";
 
-                                            echo "<input type='text' class='form-control' name='{$day}_open' id='{$day}_open' placeholder='{$day} Open' required>";
-                                            echo "<input type='text' class='form-control' name='{$day}_jodi' id='{$day}_jodi' placeholder='{$day} Jodi' required>";
-                                            echo "<input type='text' class='form-control' name='{$day}_close' id='{$day}_close' placeholder='{$day} Close' required>";
+                                            echo "<input type='text' class='form-control' name='{$day}_open' id='{$day}_open' placeholder='{$day} Open' >";
+                                            echo "<input type='text' class='form-control' name='{$day}_jodi' id='{$day}_jodi' placeholder='{$day} Jodi' >";
+                                            echo "<input type='text' class='form-control' name='{$day}_close' id='{$day}_close' placeholder='{$day} Close' >";
 
                                             echo "</div>";
                                         }

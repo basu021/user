@@ -268,7 +268,7 @@
 
             <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
                 <li>
-                    <button class="button-menu-mobile disable-btn waves-effect">
+                    <button class="button-menu-mobile disable-btn waves-effect" onclick="toggleLeftSideMenu()">
                         <i class="fe-menu"></i>
                     </button>
                 </li>
@@ -328,9 +328,9 @@
                                             echo "<div class='col-md-4'>";
                                             echo "<label>{$day}:</label>";
 
-                                            echo "<input type='text' class='form-control' name='{$day}_open' id='{$day}_open' placeholder='{$day} Open' required>";
-                                            echo "<input type='text' class='form-control' name='{$day}_jodi' id='{$day}_jodi' placeholder='{$day} Jodi' required>";
-                                            echo "<input type='text' class='form-control' name='{$day}_close' id='{$day}_close' placeholder='{$day} Close' required>";
+                                            echo "<input type='text' class='form-control' name='{$day}_open' id='{$day}_open' placeholder='{$day} Open' >";
+                                            echo "<input type='text' class='form-control' name='{$day}_jodi' id='{$day}_jodi' placeholder='{$day} Jodi' >";
+                                            echo "<input type='text' class='form-control' name='{$day}_close' id='{$day}_close' placeholder='{$day} Close' >";
 
                                             echo "</div>";
                                         }
@@ -692,6 +692,23 @@ $(document).ready(function () {
 
 
     </script>
+
+<script type="text/javascript">
+    function toggleLeftSideMenu() {
+var leftSideMenu = document.querySelector('.left-side-menu');
+if (leftSideMenu.style.display === 'none' || leftSideMenu.style.display === '') {
+leftSideMenu.style.display = 'block';
+} else {
+leftSideMenu.style.display = 'none';
+}
+}
+$(document).ready(function() {
+$('#toggleButton').click(function() {
+$('.left-side-menu').toggle();
+});
+});
+
+</script>
 
 </body>
 

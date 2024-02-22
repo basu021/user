@@ -32,6 +32,24 @@ checkAuthentication();
     <!-- icons -->
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 
+    <style>
+        .card {
+            padding: 10px;
+        }
+
+        input {
+            padding:5px 10px;
+            border: 2px solid goldenrod;
+        }
+
+        .submit-button {
+            padding: 5px 8px;
+            border: 2px solid goldenrod;
+            margin-top: 5px;
+        }
+
+    </style>
+
 </head>
 
 <!-- body start -->
@@ -291,7 +309,7 @@ checkAuthentication();
 
             <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
                 <li>
-                    <button class="button-menu-mobile disable-btn waves-effect">
+                    <button class="button-menu-mobile disable-btn waves-effect" onclick="toggleLeftSideMenu()">
                         <i class="fe-menu"></i>
                     </button>
                 </li>
@@ -368,9 +386,12 @@ $result = $stmt->get_result();
 
                 <form class="update-form">
                     <input type="hidden" name="bazaar_id" value="<?php echo $row['id']; ?>">
-                    <input type="text" name="bazaar_opentime" placeholder="Open Time" value="<?php echo $row['bazaar_opentime']; ?>">
-                    <input type="text" name="bazaar_closetime" placeholder="Close Time" value="<?php echo $row['bazaar_closetime']; ?>">
-                    <input type="text" name="bazaar_result" placeholder="Result" value="<?php echo $row['bazaar_result']; ?>">
+                    <!-- <input type="text" name="bazaar_opentime" placeholder="Open Time" value=""> -->
+                    <!-- <input type="text" name="bazaar_closetime" placeholder="Close Time" value=""> -->
+                    <p>Open Time: <span><?php echo $row['bazaar_opentime']; ?></span> Close Time: <span><?php echo $row['bazaar_closetime']; ?></span></p>
+
+                    <p>Result Update:</p>
+                    <input type="text" name="bazaar_result" placeholder="Result" value="<?php echo $row['bazaar_result']; ?>"> <br>
                     <button type="button" class="submit-button">Submit</button>
                     <div class="response-message"></div>
                 </form>
@@ -632,6 +653,23 @@ $(document).ready(function() {
 });
 
 </script>
+
+<script type="text/javascript">
+    function toggleLeftSideMenu() {
+var leftSideMenu = document.querySelector('.left-side-menu');
+if (leftSideMenu.style.display === 'none' || leftSideMenu.style.display === '') {
+leftSideMenu.style.display = 'block';
+} else {
+leftSideMenu.style.display = 'none';
+}
+}
+$(document).ready(function() {
+$('#toggleButton').click(function() {
+$('.left-side-menu').toggle();
+});
+});
+
+</>
 
 </body>
 
