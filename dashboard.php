@@ -358,10 +358,6 @@ checkAuthentication();
                                                 
                                                 echo $count;
 
-                                                $stmt->close();
-                                                $conn->close();
-
-                                                
                                                 ?>
                                                     
                                             </h2>
@@ -440,7 +436,38 @@ checkAuthentication();
                                                         data-thickness=".15"/>
                                             </div>
                                             <div class="widget-detail-1 text-end">
-                                                <h2 class="fw-normal pt-2 mb-1"> 4569 </h2>
+                                                
+                                                <?php
+include_once './assets/php/db.php';
+
+$userId = $_SESSION['user_id'];
+$query = "SELECT DATEDIFF(m.end_date, CURDATE()) AS days_left
+          FROM membership m
+          JOIN users u ON m.user_id = u.user_id
+          WHERE m.user_id = ?";
+
+$stmt = $conn->prepare($query);
+$stmt->bind_param('i', $userId); // Use $userId directly, no need for $_SESSION['user_id']
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Now you can fetch the result as needed
+$row = $result->fetch_assoc();
+$days_left = $row['days_left'];
+
+// Apply styling based on the value
+if ($days_left < 10) {
+    echo '<h2 class="fw-normal pt-2 mb-1"> <b style="color: red;">' . $days_left . '</b></h2>';
+} else {
+    echo '<h2 class="fw-normal pt-2 mb-1">' . $days_left . '</h2> ';
+}
+
+$stmt->close();
+$conn->close();
+?> 
+
+
+                                            
                                                 <p class="text-muted mb-1"> <a href="https://wa.link/ir27nr"> Recharge Now </a></p>
                                             </div>
                                         </div>
