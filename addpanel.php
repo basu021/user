@@ -552,64 +552,6 @@
             });
         });
 
-    //     $(document).ready(function () {
-    //     // Function to calculate the sum of digits
-    //     function calculateSumOfDigits(value) {
-    //         return value.toString().split('').reduce(function (acc, digit) {
-    //             return acc + parseInt(digit);
-    //         }, 0);
-    //     }
-
-    //     // Function to get the rightmost digit
-    //     function getRightmostDigit(value) {
-    //         return parseInt(value.toString().slice(-1));
-    //     }
-
-    //     // Event listener for open and close input fields
-    //     $('.form-row input[id$="_open"], .form-row input[id$="_close"]').on('input', function () {
-    //         var day = $(this).attr('id').split('_')[0];
-    //         var openSum = calculateSumOfDigits($('#' + day + '_open').val());
-    //         var closeSum = 0;
-
-    //         var closeValue = $('#' + day + '_close').val();
-    //         if (closeValue) {
-    //             closeSum = calculateSumOfDigits(closeValue);
-    //         }
-
-    //         // Set the jodi value
-    //         $('#' + day + '_jodi').val('' + getRightmostDigit(openSum) + getRightmostDigit(closeSum));
-    //     });
-    // });
-
-    // $(document).ready(function () {
-    //     // Function to calculate the sum of digits
-    //     function calculateSumOfDigits(value) {
-    //         return value.toString().split('').reduce(function (acc, digit) {
-    //             return acc + parseInt(digit);
-    //         }, 0);
-    //     }
-
-    //     // Function to get the rightmost digit
-    //     function getRightmostDigit(value) {
-    //         return parseInt(value.toString().slice(-1));
-    //     }
-
-    //     // Event listener for open and close input fields
-    //     $('.form-row input[id$="_open"], .form-row input[id$="_close"]').on('input', function () {
-    //         var day = $(this).attr('id').split('_')[0];
-    //         var openSum = calculateSumOfDigits($('#' + day + '_open').val());
-    //         var closeSum = 0;
-
-    //         var closeValue = $('#' + day + '_close').val();
-    //         if (closeValue) {
-    //             closeSum = calculateSumOfDigits(closeValue);
-    //         }
-
-    //         // Set the jodi value
-    //         $('#' + day + '_jodi').val('' + getRightmostDigit(openSum) + getRightmostDigit(closeSum));
-    //     });
-    // });
-
     $(document).ready(function () {
     // Function to calculate the sum of digits
     function calculateSumOfDigits(value) {

@@ -111,6 +111,24 @@
                 </li>
 
                 <li>
+                    <a href="#hazarline" data-bs-toggle="collapse">
+                        <i class="mdi mdi-email-outline"></i>
+                        <span> Hazarline</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="hazarline">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="./addhazarline.php">Add Hazar Line</a>
+                            </li>
+                            <li>
+                                <a href="./managehazarline.php">Manage Hazar Line</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
                     <a href="starline.php">
                         <i class="mdi mdi-forum-outline"></i>
                         <span> Star Line </span>
