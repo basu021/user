@@ -669,7 +669,7 @@ $('.left-side-menu').toggle();
 });
 });
 
-</>
+</script>
 
 </body>
 

@@ -1,21 +1,9 @@
-<?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-include_once './assets/php/auth.php';
-
-// Check if the user is authenticated
-checkAuthentication();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8" />
-    <title>Dashboard | Sattamatka</title>
+    <title>Starter | Adminto - Responsive Admin Dashboard Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Uss" name="author" />
@@ -242,7 +230,7 @@ checkAuthentication();
                         <div class="dropdown-divider"></div>
 
                         <!-- item-->
-                        <a href="./logout.php" class="dropdown-item notify-item">
+                        <a href="auth-logout.html" class="dropdown-item notify-item">
                             <i class="fe-log-out"></i>
                             <span>Logout</span>
                         </a>
@@ -286,7 +274,7 @@ checkAuthentication();
                 </li>
 
                 <li>
-                    <h4 class="page-title-main">Dashboard</h4>
+                    <h4 class="page-title-main">Starter</h4>
                 </li>
 
             </ul>
@@ -296,7 +284,9 @@ checkAuthentication();
         </div>
         <!-- end Topbar -->
 
-        <?php include './assets/components/sidebar.php' ?>
+        <!-- ========== Left Sidebar Start ========== -->
+        <?php include './assets/components/sidebar.php'; ?>
+
 
         <!-- ============================================================== -->
         <!-- Start Page Content here -->
@@ -308,213 +298,54 @@ checkAuthentication();
                 <!-- Start Content-->
                 <div class="container-fluid">
 
-                    <h1>Welcome</h1>
-                    <div class="row">
+                <div class="row">
+    <div class="col-sm-12">
+        <h1>Add panel</h1>
+        <form action="./assets/php/starline-dataadd.php" method="post">
+            <?php
+            $hours = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+            ?>
 
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="dropdown float-end">
-                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                        </div>
-                                    </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label>Select Starline:</label>
+                    <select class="form-control" name="starlineid" id="starlineid">
+                        <!-- Options will be dynamically populated using JavaScript -->
+                    </select>
+                </div>
 
-                                    <h4 class="header-title mt-0 mb-4">Total Bazar</h4>
+                <div class="form-group col-md-12">
+                    <label for="weekvalue">Date:</label>
+                    <input type="date" class="form-control" name="weekvalue" id="weekvalue" required>
+                    <select class="form-control" name="selectedWeek" id="selectedWeek">
+    <!-- Options will be dynamically populated using JavaScript -->
+</select>
+                    
+                </div>
 
-                                    <div class="widget-chart-1">
-                                        <div class="widget-chart-box-1 float-start" dir="ltr">
-                                            <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#f05050 " data-bgColor="#F9B9B9" value="58" data-skin="tron" data-angleOffset="180" data-readOnly=true data-thickness=".15" />
-                                        </div>
+                <div class="row">
+                    <?php
+                    foreach ($hours as $hour) {
+                        echo "<div class='col-md-4'>";
+                        echo "<label>Hour {$hour}:</label>";
 
-                                        <div class="widget-detail-1 text-end">
-                                            <h2 class="fw-normal pt-2 mb-1">
+                        echo "<input type='text' class='form-control' name='{$hour}_open' id='{$hour}_open' placeholder='{$hour} Open' >";
+                        echo "<input type='text' class='form-control' name='{$hour}_jodi' id='{$hour}_jodi' placeholder='{$hour} Jodi' >";
 
-                                                <?php
-                                                include_once './assets/php/db.php';
+                        echo "</div>";
+                    }
+                    ?>
+                </div>
+            </div>
 
-                                                $userId = $_SESSION['user_id'];
-                                                $query = "SELECT count(*) FROM bazaar WHERE bazaar_access_to_users = ?";
-
-                                                $stmt = $conn->prepare($query);
-                                                $stmt->bind_param('i', $userId); // Use $userId directly, no need for $_SESSION['user_id']
-                                                $stmt->execute();
-                                                $result = $stmt->get_result();
-
-                                                // Now you can fetch the result as needed
-                                                $row = $result->fetch_assoc();
-                                                $count = $row['count(*)'];
-
-                                                // Use $count as needed
-
-                                                echo $count;
-
-                                                ?>
-
-                                            </h2>
-                                            <p class="text-muted mb-1">Total Bazar</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- end col -->
-
-                        <div class="col-xl-3 col-md-6 d-none">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="dropdown float-end">
-                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                        </div>
-                                    </div>
-
-                                    <h4 class="header-title mt-0 mb-3">Sales Analytics</h4>
-
-                                    <div class="widget-box-2">
-                                        <div class="widget-detail-2 text-end">
-                                            <span class="badge bg-success rounded-pill float-start mt-3">32% <i class="mdi mdi-trending-up"></i> </span>
-                                            <h2 class="fw-normal mb-1"> 8451 </h2>
-                                            <p class="text-muted mb-3">Revenue today</p>
-                                        </div>
-                                        <div class="progress progress-bar-alt-success progress-sm">
-                                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%;">
-                                                <span class="visually-hidden">77% Complete</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- end col -->
-
-                        <div class="col-xl-3 col-md-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="dropdown float-end">
-                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                        </div>
-                                    </div>
-
-                                    <h4 class="header-title mt-0 mb-4">Days Left</h4>
-
-                                    <div class="widget-chart-1">
-                                        <div class="widget-chart-box-1 float-start" dir="ltr">
-                                            <input data-plugin="knob" data-width="70" data-height="70" data-fgColor="#ffbd4a" data-bgColor="#FFE6BA" value="80" data-skin="tron" data-angleOffset="180" data-readOnly=true data-thickness=".15" />
-                                        </div>
-                                        <div class="widget-detail-1 text-end">
-
-                                            <?php
-                                            include_once './assets/php/db.php';
-
-                                            $userId = $_SESSION['user_id'];
-                                            $query = "SELECT DATEDIFF(m.end_date, CURDATE()) AS days_left
-                                                        FROM membership m
-                                                        JOIN users u ON m.user_id = u.user_id
-                                                        WHERE m.user_id = ?";
-                                            $stmt = $conn->prepare($query);
-                                            $stmt->bind_param('i', $userId); // Use $userId directly, no need for $_SESSION['user_id']
-                                            $stmt->execute();
-                                            $result = $stmt->get_result();
-
-                                            // Now you can fetch the result as needed
-                                            $row = $result->fetch_assoc();
-                                            $days_left = $row['days_left'];
-
-                                            // Apply styling based on the value
-                                            if ($days_left < 10) {
-                                                echo '<h2 class="fw-normal pt-2 mb-1"> <b style="color: red;">' . $days_left . '</b></h2>';
-                                            } else {
-                                                echo '<h2 class="fw-normal pt-2 mb-1">' . $days_left . '</h2> ';
-                                            }
-
-                                            $stmt->close();
-                                            $conn->close();
-                                            ?>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+                    <!-- end row -->
 
 
-
-                                            <p class="text-muted mb-1"> <a href="https://wa.link/ir27nr"> Recharge Now </a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- end col -->
-
-                        <div class="col-xl-3 col-md-6 d-none">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="dropdown float-end">
-                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-end">
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Another action</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Something else</a>
-                                            <!-- item-->
-                                            <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
-                                        </div>
-                                    </div>
-
-                                    <h4 class="header-title mt-0 mb-3">Daily Sales</h4>
-
-                                    <div class="widget-box-2">
-                                        <div class="widget-detail-2 text-end">
-                                            <span class="badge bg-pink rounded-pill float-start mt-3">32% <i class="mdi mdi-trending-up"></i> </span>
-                                            <h2 class="fw-normal mb-1"> 158 </h2>
-                                            <p class="text-muted mb-3">Revenue today</p>
-                                        </div>
-                                        <div class="progress progress-bar-alt-pink progress-sm">
-                                            <div class="progress-bar bg-pink" role="progressbar" aria-valuenow="77" aria-valuemin="0" aria-valuemax="100" style="width: 77%;">
-                                                <span class="visually-hidden">77% Complete</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div><!-- end col -->
-
-                    </div>
-
-                    <div class="row">
-                        <iframe style="height: 350px;" src="https://satkamatkarb.online/user/assets/items/calculator.php" frameborder="0"></iframe>
-
-                    </div>
-                </div> <!-- container-fluid -->
+                </div> <!-- container -->
 
             </div> <!-- content -->
 
@@ -540,6 +371,7 @@ checkAuthentication();
             <!-- end Footer -->
 
         </div>
+
         <!-- ============================================================== -->
         <!-- End Page content -->
         <!-- ============================================================== -->
@@ -638,12 +470,14 @@ checkAuthentication();
 
                         <div class="form-check form-switch mb-1">
                             <input type="checkbox" class="form-check-input" name="leftbar-size" value="condensed" id="condensed-check" />
-                            <label class="form-check-label" for="condensed-check">Condensed <small>(Extra Small size)</small></label>
+                            <label class="form-check-label" for="condensed-check">Condensed <small>(Extra Small
+                                    size)</small></label>
                         </div>
 
                         <div class="form-check form-switch mb-1">
                             <input type="checkbox" class="form-check-input" name="leftbar-size" value="compact" id="compact-check" />
-                            <label class="form-check-label" for="compact-check">Compact <small>(Small size)</small></label>
+                            <label class="form-check-label" for="compact-check">Compact <small>(Small
+                                    size)</small></label>
                         </div>
 
                         <!-- User info -->
@@ -685,7 +519,6 @@ checkAuthentication();
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
 
-
     <!-- Vendor -->
     <script src="assets/libs/jquery/jquery.min.js"></script>
     <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -694,36 +527,145 @@ checkAuthentication();
     <script src="assets/libs/waypoints/lib/jquery.waypoints.min.js"></script>
     <script src="assets/libs/jquery.counterup/jquery.counterup.min.js"></script>
     <script src="assets/libs/feather-icons/feather.min.js"></script>
-    <!-- knob plugin -->
-    <script src="assets/libs/jquery-knob/jquery.knob.min.js"></script>
 
-    <!--Morris Chart-->
-    <script src="assets/libs/morris.js06/morris.min.js"></script>
-    <script src="assets/libs/raphael/raphael.min.js"></script>
-
-    <!-- Dashboar init js-->
-    <script src="assets/js/pages/dashboard.init.js"></script>
-
-    <!-- App js-->
+    <!-- App js -->
     <script src="assets/js/app.min.js"></script>
+    <script>
+       
 
-    <script type="text/javascript">
-        function toggleLeftSideMenu() {
-            var leftSideMenu = document.querySelector('.left-side-menu');
-            if (leftSideMenu.style.display === 'none' || leftSideMenu.style.display === '') {
-                leftSideMenu.style.display = 'block';
-            } else {
-                leftSideMenu.style.display = 'none';
-            }
-        }
-        $(document).ready(function() {
-            $('#toggleButton').click(function() {
-                $('.left-side-menu').toggle();
+       $(document).ready(function() {
+            // Fetch starline and populate the dropdown
+            $.ajax({
+                type: "POST",
+                url: "./assets/php/fetch-starline-info.php", // Replace with the actual file handling the request
+                dataType: "json",
+                success: function(response) {
+                    if (response.success && response.starline.length > 0) {
+                        var dropdown = $("#starlineid");
+
+                        $.each(response.starline, function(index, starline) {
+                            dropdown.append($("<option>").val(starline.starline_id).text(starline.starline_name));
+
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error: " + status + " - " + error);
+                }
             });
         });
+
+
+    $(document).ready(function () {
+    // Function to calculate the sum of digits
+    function calculateSumOfDigits(value) {
+        return value.toString().split('').reduce(function (acc, digit) {
+            return acc + parseInt(digit);
+        }, 0);
+    }
+
+    // Function to get the rightmost digit
+    function getRightmostDigit(value) {
+        return parseInt(value.toString().slice(-1));
+    }
+
+    // Event listener for open and close input fields
+    $('.form-row input[id$="_open"]').on('input', function () {
+        var day = $(this).attr('id').split('_')[0];
+        var openSum = calculateSumOfDigits($('#' + day + '_open').val());  
+
+        // Set the jodi value based on the condition
+        
+            $('#' + day + '_jodi').val(getRightmostDigit(openSum));
+
+    });
+});
+    
+   // Event listener for the Starline dropdown
+$('#starlineid').on('change', function () {
+    var selectedStarlineId = $(this).val();
+
+    // Fetch dates based on the selected Starline
+    $.ajax({
+        type: "GET",
+        url: "./assets/php/fetch-date.php",
+        data: { starlineid: selectedStarlineId },
+        success: function (response) {
+            var dateDropdown = $("#selectedDate");
+            dateDropdown.empty();
+
+            // Check if the response is a string
+            if (typeof response === 'string') {
+                // Try to parse the string into an array
+                try {
+                    response = JSON.parse(response);
+                } catch (e) {
+                    console.error("Error parsing response string:", e);
+                }
+            }
+
+            // Check if the response is an array
+            if (Array.isArray(response)) {
+                console.log("Response is an array. Number of dates:", response.length);
+                $.each(response, function (index, date) {
+                    dateDropdown.append($("<option>").val(date).text(date));
+                });
+            } else {
+                console.error("Invalid response format for dates");
+                console.log("Response Content:", response);
+            }
+
+            // Trigger the change event for the Date dropdown to fetch panel data initially
+            dateDropdown.trigger('change');
+        },
+        error: function (xhr, status, error) {
+            console.error("AJAX Error: " + status + " - " + error);
+        }
+    });
+});
+
+// Event listener for the Date dropdown
+$('#selectedDate').on('change', function () {
+    var selectedStarlineId = $('#starlineid').val();
+    var selectedDate = $(this).val();
+
+    // Fetch and display panel data based on selected Starline and Date
+    $.ajax({
+        type: "GET",
+        url: "./assets/php/fetch-panel-data.php",
+        data: { starlineid: selectedStarlineId, dateValue: selectedDate },
+        success: function (panelData) {
+            // Update your form elements with the fetched data
+            // For example, you can update each hour's open and jodi values
+            for (var i = 1; i <= 12; i++) {
+                $('#hour' + i + '_open').val(panelData['hour' + i + '_open']);
+                $('#hour' + i + '_jodi').val(panelData['hour' + i + '_jodi']);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("AJAX Error: " + status + " - " + error);
+        }
+    });
+});
+
     </script>
 
+<script type="text/javascript">
+    function toggleLeftSideMenu() {
+var leftSideMenu = document.querySelector('.left-side-menu');
+if (leftSideMenu.style.display === 'none' || leftSideMenu.style.display === '') {
+leftSideMenu.style.display = 'block';
+} else {
+leftSideMenu.style.display = 'none';
+}
+}
+$(document).ready(function() {
+$('#toggleButton').click(function() {
+$('.left-side-menu').toggle();
+});
+});
 
+</script>
 
 </body>
 
