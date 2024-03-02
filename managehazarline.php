@@ -556,63 +556,115 @@
     <!-- App js -->
     <script src="assets/js/app.min.js"></script>
     <script>
+        $(document).ready(function () {
+            // Function to fetch dates based on selected starline
+            function fetchDates(starlineId) {
+                $.ajax({
+                    url: 'https://satkamatkarb.online/user/assets/php/fetch-date.php?starlineid=' + starlineId,
+                    type: 'GET',
+                    success: function (response) {
+                        // Parse the response as JSON
+                        var dates = JSON.parse(response);
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
+                        // Clear existing options
+                        $('#selectedDate').empty();
 
-<script>
-$(document).ready(function() {
-    // Function to fetch dates based on selected starline
-    function fetchDates(starlineId) {
-        $.ajax({
-            url: 'https://satkamatkarb.online/user/assets/php/fetch-date.php?starlineid=' + starlineId,
-            type: 'GET',
-            success: function(response) {
-                // Parse the response as JSON
-                var dates = JSON.parse(response);
-                
-                // Clear existing options
-                $('#selectedDate').empty();
-                
-                // Populate date dropdown with fetched dates
-                dates.forEach(function(date) {
-                    $('#selectedDate').append('<option value="' + date + '">' + date + '</option>');
+                        // Populate date dropdown with fetched dates
+                        dates.forEach(function (date) {
+                            $('#selectedDate').append('<option value="' + date + '">' + date + '</option>');
+                        });
+
+                        // Fetch panel data for the selected starline and date
+                        fetchPanelData(starlineId, $('#selectedDate').val());
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
+                        // Handle error if needed
+                    }
                 });
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-                // Handle error if needed
             }
+
+            // Function to fetch panel data based on selected starline and date
+            function fetchPanelData(starlineId, selectedDate) {
+                $.ajax({
+                    url: './assets/php/fetch-starline-by-date.php',
+                    type: 'POST',
+                    data: { starlineId: starlineId, selectedDate: selectedDate },
+                    dataType: 'json',
+                    success: function (response) {
+                        console.log("Panel data response:", response); // Log the response to console
+                        // Populate input fields with fetched panel data
+                        $.each(response, function (hour, data) {
+                            $('#' + hour + '_open').val(data.hour_open);
+                            $('#' + hour + '_jodi').val(data.hour_jodi);
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
+                        // Handle error if needed
+                    }
+                });
+            }
+
+            // Fetch starline and populate the dropdown
+            $.ajax({
+                type: "POST",
+                url: "./assets/php/fetch-starline-info.php", // Replace with the actual file handling the request
+                dataType: "json",
+                success: function (response) {
+                    if (response.success && response.starline.length > 0) {
+                        var dropdown = $("#starlineid");
+
+                        $.each(response.starline, function (index, starline) {
+                            dropdown.append($("<option>").val(starline.starline_id).text(starline.starline_name));
+                        });
+
+                        // Event listener for change in starline selection
+                        dropdown.change(function () {
+                            var starlineId = $(this).val();
+                            fetchDates(starlineId); // Fetch dates based on selected starline
+                        });
+
+                        // Initial fetch of dates based on default starline selection
+                        fetchDates(dropdown.val());
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX Error: " + status + " - " + error);
+                }
+            });
+
+            // Event listener for change in selected date
+            $('#selectedDate').change(function () {
+                var starlineId = $('#starlineid').val();
+                var selectedDate = $(this).val();
+                fetchPanelData(starlineId, selectedDate); // Fetch panel data based on selected starline and date
+            });
+
+            // Event listener for form submission
+            $('form').submit(function (event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Serialize form data
+                var formData = $(this).serialize();
+
+                // Submit form data using AJAX
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        // Handle success response if needed
+                        console.log("Form submitted successfully.");
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
+                        // Handle error if needed
+                    }
+                });
+            });
         });
-    }
 
-    // Fetch starline and populate the dropdown
-    $.ajax({
-        type: "POST",
-        url: "./assets/php/fetch-starline-info.php", // Replace with the actual file handling the request
-        dataType: "json",
-        success: function(response) {
-            if (response.success && response.starline.length > 0) {
-                var dropdown = $("#starlineid");
-
-                $.each(response.starline, function(index, starline) {
-                    dropdown.append($("<option>").val(starline.starline_id).text(starline.starline_name));
-                });
-
-                // Event listener for change in starline selection
-                dropdown.change(function() {
-                    var starlineId = $(this).val();
-                    fetchDates(starlineId); // Fetch dates based on selected starline
-                });
-
-                // Initial fetch of dates based on default starline selection
-                fetchDates(dropdown.val());
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error("AJAX Error: " + status + " - " + error);
-        }
-    });
-});
 
         $(document).ready(function () {
             // Function to calculate the sum of digits
@@ -639,7 +691,7 @@ $(document).ready(function() {
             });
         });
 
-        
+
 
     </script>
 
