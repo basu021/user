@@ -22,9 +22,7 @@
 
 <!-- body start -->
 
-<body class="loading" data-layout-color="light" data-layout-mode="default" data-layout-size="fluid"
-    data-topbar-color="light" data-leftbar-position="fixed" data-leftbar-color="light" data-leftbar-size='default'
-    data-sidebar-user='true'>
+<body class="loading" data-layout-color="light" data-layout-mode="default" data-layout-size="fluid" data-topbar-color="light" data-leftbar-position="fixed" data-leftbar-color="light" data-leftbar-size='default' data-sidebar-user='true'>
 
     <!-- Begin page -->
     <div id="wrapper">
@@ -75,8 +73,7 @@
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <div class="d-flex align-items-start">
-                                            <img class="d-flex me-2 rounded-circle" src="assets/images/users/user-2.jpg"
-                                                alt="Generic placeholder image" height="32">
+                                            <img class="d-flex me-2 rounded-circle" src="assets/images/users/user-2.jpg" alt="Generic placeholder image" height="32">
                                             <div class="w-100">
                                                 <h5 class="m-0 font-14">Erwin E. Brown</h5>
                                                 <span class="font-12 mb-0">UI Designer</span>
@@ -87,8 +84,7 @@
                                     <!-- item-->
                                     <a href="javascript:void(0);" class="dropdown-item notify-item">
                                         <div class="d-flex align-items-start">
-                                            <img class="d-flex me-2 rounded-circle" src="assets/images/users/user-5.jpg"
-                                                alt="Generic placeholder image" height="32">
+                                            <img class="d-flex me-2 rounded-circle" src="assets/images/users/user-5.jpg" alt="Generic placeholder image" height="32">
                                             <div class="w-100">
                                                 <h5 class="m-0 font-14">Jacob Deo</h5>
                                                 <span class="font-12 mb-0">Developer</span>
@@ -103,21 +99,18 @@
                 </li>
 
                 <li class="dropdown d-inline-block d-lg-none">
-                    <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-bs-toggle="dropdown"
-                        href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                         <i class="fe-search noti-icon"></i>
                     </a>
                     <div class="dropdown-menu dropdown-lg dropdown-menu-end p-0">
                         <form class="p-3">
-                            <input type="text" class="form-control" placeholder="Search ..."
-                                aria-label="Recipient's username">
+                            <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
                         </form>
                     </div>
                 </li>
 
                 <li class="dropdown notification-list topbar-dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#"
-                        role="button" aria-haspopup="false" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                         <i class="fe-bell noti-icon"></i>
                         <span class="badge bg-danger rounded-circle noti-icon-badge">9</span>
                     </a>
@@ -201,8 +194,7 @@
                         </div>
 
                         <!-- All-->
-                        <a href="javascript:void(0);"
-                            class="dropdown-item text-center text-primary notify-item notify-all">
+                        <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
                             View all
                             <i class="fe-arrow-right"></i>
                         </a>
@@ -211,8 +203,7 @@
                 </li>
 
                 <li class="dropdown notification-list topbar-dropdown">
-                    <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown"
-                        href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                         <img src="assets/images/users/user-1.jpg" alt="user-image" class="rounded-circle">
                         <span class="pro-user-name ms-1">
                             theuser <i class="mdi mdi-chevron-down"></i>
@@ -412,27 +403,23 @@
 
                         <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Color Scheme</h6>
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="layout-color" value="light"
-                                id="light-mode-check" checked />
+                            <input type="checkbox" class="form-check-input" name="layout-color" value="light" id="light-mode-check" checked />
                             <label class="form-check-label" for="light-mode-check">Light Mode</label>
                         </div>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="layout-color" value="dark"
-                                id="dark-mode-check" />
+                            <input type="checkbox" class="form-check-input" name="layout-color" value="dark" id="dark-mode-check" />
                             <label class="form-check-label" for="dark-mode-check">Dark Mode</label>
                         </div>
 
                         <!-- Width -->
                         <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Width</h6>
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="layout-size" value="fluid" id="fluid"
-                                checked />
+                            <input type="checkbox" class="form-check-input" name="layout-size" value="fluid" id="fluid" checked />
                             <label class="form-check-label" for="fluid-check">Fluid</label>
                         </div>
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="layout-size" value="boxed"
-                                id="boxed" />
+                            <input type="checkbox" class="form-check-input" name="layout-size" value="boxed" id="boxed" />
                             <label class="form-check-label" for="boxed-check">Boxed</label>
                         </div>
 
@@ -440,14 +427,12 @@
                         <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Menus (Leftsidebar and Topbar) Positon</h6>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="leftbar-position" value="fixed"
-                                id="fixed-check" checked />
+                            <input type="checkbox" class="form-check-input" name="leftbar-position" value="fixed" id="fixed-check" checked />
                             <label class="form-check-label" for="fixed-check">Fixed</label>
                         </div>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="leftbar-position" value="scrollable"
-                                id="scrollable-check" />
+                            <input type="checkbox" class="form-check-input" name="leftbar-position" value="scrollable" id="scrollable-check" />
                             <label class="form-check-label" for="scrollable-check">Scrollable</label>
                         </div>
 
@@ -455,26 +440,22 @@
                         <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Left Sidebar Color</h6>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="leftbar-color" value="light"
-                                id="light" />
+                            <input type="checkbox" class="form-check-input" name="leftbar-color" value="light" id="light" />
                             <label class="form-check-label" for="light-check">Light</label>
                         </div>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="leftbar-color" value="dark" id="dark"
-                                checked />
+                            <input type="checkbox" class="form-check-input" name="leftbar-color" value="dark" id="dark" checked />
                             <label class="form-check-label" for="dark-check">Dark</label>
                         </div>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="leftbar-color" value="brand"
-                                id="brand" />
+                            <input type="checkbox" class="form-check-input" name="leftbar-color" value="brand" id="brand" />
                             <label class="form-check-label" for="brand-check">Brand</label>
                         </div>
 
                         <div class="form-check form-switch mb-3">
-                            <input type="checkbox" class="form-check-input" name="leftbar-color" value="gradient"
-                                id="gradient" />
+                            <input type="checkbox" class="form-check-input" name="leftbar-color" value="gradient" id="gradient" />
                             <label class="form-check-label" for="gradient-check">Gradient</label>
                         </div>
 
@@ -482,21 +463,18 @@
                         <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Left Sidebar Size</h6>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="leftbar-size" value="default"
-                                id="default-size-check" checked />
+                            <input type="checkbox" class="form-check-input" name="leftbar-size" value="default" id="default-size-check" checked />
                             <label class="form-check-label" for="default-size-check">Default</label>
                         </div>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="leftbar-size" value="condensed"
-                                id="condensed-check" />
+                            <input type="checkbox" class="form-check-input" name="leftbar-size" value="condensed" id="condensed-check" />
                             <label class="form-check-label" for="condensed-check">Condensed <small>(Extra Small
                                     size)</small></label>
                         </div>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="leftbar-size" value="compact"
-                                id="compact-check" />
+                            <input type="checkbox" class="form-check-input" name="leftbar-size" value="compact" id="compact-check" />
                             <label class="form-check-label" for="compact-check">Compact <small>(Small
                                     size)</small></label>
                         </div>
@@ -505,8 +483,7 @@
                         <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Sidebar User Info</h6>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="sidebar-user" value="true"
-                                id="sidebaruser-check" />
+                            <input type="checkbox" class="form-check-input" name="sidebar-user" value="true" id="sidebaruser-check" />
                             <label class="form-check-label" for="sidebaruser-check">Enable</label>
                         </div>
 
@@ -515,21 +492,18 @@
                         <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Topbar</h6>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="topbar-color" value="dark"
-                                id="darktopbar-check" checked />
+                            <input type="checkbox" class="form-check-input" name="topbar-color" value="dark" id="darktopbar-check" checked />
                             <label class="form-check-label" for="darktopbar-check">Dark</label>
                         </div>
 
                         <div class="form-check form-switch mb-1">
-                            <input type="checkbox" class="form-check-input" name="topbar-color" value="light"
-                                id="lighttopbar-check" />
+                            <input type="checkbox" class="form-check-input" name="topbar-color" value="light" id="lighttopbar-check" />
                             <label class="form-check-label" for="lighttopbar-check">Light</label>
                         </div>
 
                         <div class="d-grid mt-4">
                             <button class="btn btn-primary" id="resetBtn">Reset to Default</button>
-                            <a href="https://1.envato.market/admintoadmin" class="btn btn-danger mt-3"
-                                target="_blank"><i class="mdi mdi-basket me-1"></i> Purchase Now</a>
+                            <a href="https://1.envato.market/admintoadmin" class="btn btn-danger mt-3" target="_blank"><i class="mdi mdi-basket me-1"></i> Purchase Now</a>
                         </div>
 
                     </div>
@@ -556,50 +530,68 @@
     <!-- App js -->
     <script src="assets/js/app.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             // Function to fetch dates based on selected starline
             function fetchDates(starlineId) {
-                $.ajax({
-                    url: 'https://satkamatkarb.online/user/assets/php/fetch-date.php?starlineid=' + starlineId,
-                    type: 'GET',
-                    success: function (response) {
-                        // Parse the response as JSON
-                        var dates = JSON.parse(response);
+    $.ajax({
+        url: 'https://satkamatkarb.online/user/assets/php/fetch-date.php?starlineid=' + starlineId,
+        type: 'GET',
+        success: function(response) {
+            try {
+                // Try to parse the response as JSON
+                var dates = JSON.parse(response);
 
-                        // Clear existing options
-                        $('#selectedDate').empty();
+                // Clear existing options
+                $('#selectedDate').empty();
 
-                        // Populate date dropdown with fetched dates
-                        dates.forEach(function (date) {
-                            $('#selectedDate').append('<option value="' + date + '">' + date + '</option>');
-                        });
-
-                        // Fetch panel data for the selected starline and date
-                        fetchPanelData(starlineId, $('#selectedDate').val());
-                    },
-                    error: function (xhr, status, error) {
-                        console.error(error);
-                        // Handle error if needed
-                    }
+                // Populate date dropdown with fetched dates
+                dates.forEach(function(date) {
+                    $('#selectedDate').append('<option value="' + date + '">' + date + '</option>');
                 });
+
+                // Fetch panel data for the selected starline and date
+                fetchPanelData(starlineId, $('#selectedDate').val());
+            } catch (error) {
+                console.error("Error parsing JSON:", error);
+                // Handle non-JSON response, such as an error message
             }
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+            // Handle error if needed
+        }
+    });
+}
+
 
             // Function to fetch panel data based on selected starline and date
             function fetchPanelData(starlineId, selectedDate) {
                 $.ajax({
                     url: './assets/php/fetch-starline-by-date.php',
                     type: 'POST',
-                    data: { starlineId: starlineId, selectedDate: selectedDate },
+                    data: {
+                        starlineId: starlineId,
+                        selectedDate: selectedDate
+                    },
                     dataType: 'json',
-                    success: function (response) {
+                    success: function(response) {
                         console.log("Panel data response:", response); // Log the response to console
                         // Populate input fields with fetched panel data
-                        $.each(response, function (hour, data) {
-                            $('#' + hour + '_open').val(data.hour_open);
-                            $('#' + hour + '_jodi').val(data.hour_jodi);
-                        });
+                        for (var i = 1; i <= 12; i++) {
+                            // Create variable names dynamically
+                            var hour_open_key = 'hour' + i + '_open';
+                            var hour_jodi_key = 'hour' + i + '_jodi';
+
+                            // Get values from the response or set default values
+                            var hour_open_value = response[hour_open_key] || '';
+                            var hour_jodi_value = response[hour_jodi_key] || '';
+
+                            // Set the values for input fields
+                            $('#' + i + '_open').val(hour_open_value);
+                            $('#' + i + '_jodi').val(hour_jodi_value);
+                        }
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
                         console.error(error);
                         // Handle error if needed
                     }
@@ -611,16 +603,16 @@
                 type: "POST",
                 url: "./assets/php/fetch-starline-info.php", // Replace with the actual file handling the request
                 dataType: "json",
-                success: function (response) {
+                success: function(response) {
                     if (response.success && response.starline.length > 0) {
                         var dropdown = $("#starlineid");
 
-                        $.each(response.starline, function (index, starline) {
+                        $.each(response.starline, function(index, starline) {
                             dropdown.append($("<option>").val(starline.starline_id).text(starline.starline_name));
                         });
 
                         // Event listener for change in starline selection
-                        dropdown.change(function () {
+                        dropdown.change(function() {
                             var starlineId = $(this).val();
                             fetchDates(starlineId); // Fetch dates based on selected starline
                         });
@@ -629,47 +621,53 @@
                         fetchDates(dropdown.val());
                     }
                 },
-                error: function (xhr, status, error) {
+                error: function(xhr, status, error) {
                     console.error("AJAX Error: " + status + " - " + error);
                 }
             });
 
             // Event listener for change in selected date
-            $('#selectedDate').change(function () {
+            $('#selectedDate').change(function() {
                 var starlineId = $('#starlineid').val();
                 var selectedDate = $(this).val();
                 fetchPanelData(starlineId, selectedDate); // Fetch panel data based on selected starline and date
             });
 
             // Event listener for form submission
-            $('form').submit(function (event) {
-                event.preventDefault(); // Prevent default form submission
+            $('form').submit(function(event) {
+    event.preventDefault(); // Prevent default form submission
 
-                // Serialize form data
-                var formData = $(this).serialize();
+    // Serialize form data
+    var formData = $(this).serialize();
 
-                // Submit form data using AJAX
-                $.ajax({
-                    url: $(this).attr('action'),
-                    type: 'POST',
-                    data: formData,
-                    success: function (response) {
-                        // Handle success response if needed
-                        console.log("Form submitted successfully.");
-                    },
-                    error: function (xhr, status, error) {
-                        console.error(error);
-                        // Handle error if needed
-                    }
-                });
-            });
-        });
+    // Add starline ID and selected date to form data
+    formData += '&starlineId=' + $('#starlineid').val();
+    formData += '&selectedDate=' + $('#selectedDate').val();
+
+    // Submit form data using AJAX
+    $.ajax({
+        url: './assets/php/update-starline-data.php',
+        type: 'POST',
+        data: formData,
+        success: function(response) {
+            // Handle success response if needed
+            console.log("Form submitted successfully.");
+            // Optionally, update the panel data after the form submission
+            fetchPanelData($('#starlineid').val(), $('#selectedDate').val());
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+            // Handle error if needed
+        }
+    });
+});
 
 
-        $(document).ready(function () {
+
+        $(document).ready(function() {
             // Function to calculate the sum of digits
             function calculateSumOfDigits(value) {
-                return value.toString().split('').reduce(function (acc, digit) {
+                return value.toString().split('').reduce(function(acc, digit) {
                     return acc + parseInt(digit);
                 }, 0);
             }
@@ -680,7 +678,7 @@
             }
 
             // Event listener for open and close input fields
-            $('.form-row input[id$="_open"]').on('input', function () {
+            $('.form-row input[id$="_open"]').on('input', function() {
                 var day = $(this).attr('id').split('_')[0];
                 var openSum = calculateSumOfDigits($('#' + day + '_open').val());
 
@@ -690,9 +688,6 @@
 
             });
         });
-
-
-
     </script>
 
     <script type="text/javascript">
@@ -704,12 +699,11 @@
                 leftSideMenu.style.display = 'none';
             }
         }
-        $(document).ready(function () {
-            $('#toggleButton').click(function () {
+        $(document).ready(function() {
+            $('#toggleButton').click(function() {
                 $('.left-side-menu').toggle();
             });
         });
-
     </script>
 
 </body>
