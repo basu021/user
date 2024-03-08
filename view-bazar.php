@@ -115,7 +115,6 @@ checkAuthentication();
                     <button class="button-menu-mobile disable-btn waves-effect">
                         <i class="fe-menu"></i>
                         </button>
-
                     </a>
                 </li>
 
@@ -184,21 +183,28 @@ WHERE u.user_id = ?";
                                 <div class="card">
                                     <div class="card-body widget-user">
                                         <div class="text-center">
-                                            <h2 class="fw-normal text-primary">
+                                            <h1 class="fw-normal text-dark">
+                                                <b>
                                                 <?php echo $row['bazaar_name']; ?>
-                                            </h2>
+                                                </b>
+                                            </h1>
                                             <h5>Bazaar Name</h5>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
+                            <?php
+                            $open_time = date("g:i A", strtotime($row["bazaar_opentime"]));
+                            $close_time = date("g:i A", strtotime($row["bazaar_closetime"])); 
+                            ?>
+
                             <div class="col-xl-3 col-md-6">
                                 <div class="card">
                                     <div class="card-body widget-user">
                                         <div class="text-center">
                                             <h2 class="fw-normal text-success">
-                                                <?php echo $row['bazaar_opentime']; ?>
+                                                <?php echo $open_time; ?>
                                             </h2>
                                             <h5>Open Time</h5>
                                         </div>
@@ -211,7 +217,7 @@ WHERE u.user_id = ?";
                                     <div class="card-body widget-user">
                                         <div class="text-center">
                                             <h2 class="fw-normal text-danger">
-                                                <?php echo $row['bazaar_closetime']; ?>
+                                                <?php echo $close_time; ?>
                                             </h2>
                                             <h5>Close Time</h5>
                                         </div>

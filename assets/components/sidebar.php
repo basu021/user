@@ -43,15 +43,15 @@
             <p class="text-muted left-user-info">User</p>
 
             <ul class="list-inline">
-                <li class="list-inline-item">
+                <!-- <li class="list-inline-item">
                     <a href="#" class="text-muted left-user-info">
                         <i class="mdi mdi-cog"></i>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="list-inline-item">
                     <a href="./logout.php">
-                        <i class="mdi mdi-power"></i>
+                        <i class="mdi mdi-power" style="font-size: 1.5rem;"></i>
                     </a>
                 </li>
             </ul>
@@ -128,12 +128,12 @@
                     </div>
                 </li>
 
-                <li>
+                <!-- <li>
                     <a href="starline.php">
                         <i class="mdi mdi-forum-outline"></i>
                         <span> Star Line </span>
                     </a>
-                </li>
+                </li> -->
 
                 
             </ul>

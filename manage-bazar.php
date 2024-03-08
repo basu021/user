@@ -38,7 +38,7 @@ checkAuthentication();
         }
 
         input {
-            padding:5px 10px;
+            padding: 5px 10px;
             border: 2px solid goldenrod;
         }
 
@@ -48,22 +48,24 @@ checkAuthentication();
             margin-top: 5px;
         }
 
-.menu-con {
-    margin-top: 50px;
-}
-.menu-con > * {
-    /* border: 1px solid red; */
-    
-}
+        .menu-con {
+            margin-top: 50px;
+        }
 
-.menum{
-    padding: 10px 20px;
-    text-align: center;
-}
-.menum > a {
-    padding: 10px 20px;
-}
-</style>
+        .menu-con>* {
+            /* border: 1px solid red; */
+
+        }
+
+        .menum {
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .menum>a {
+            padding: 10px 20px;
+        }
+    </style>
 
 </head>
 
@@ -126,10 +128,10 @@ checkAuthentication();
             </div>
 
             <ul class="list-unstyled topnav-menu topnav-menu-left mb-0">
-            <li class="dropdown notification-list">
+                <li class="dropdown notification-list">
                     <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
-                    <button class="button-menu-mobile disable-btn waves-effect">
-                        <i class="fe-menu"></i>
+                        <button class="button-menu-mobile disable-btn waves-effect">
+                            <i class="fe-menu"></i>
                         </button>
 
                     </a>
@@ -163,67 +165,79 @@ checkAuthentication();
                                 <?php
                                 include_once './assets/php/db.php';
 
-// Check if the user is authenticated
-if (!isset($_SESSION['user_id'])) {
-    // Redirect to login page if not authenticated
-    header('Location: ../../login.html');
-    exit();
-}
+                                // Check if the user is authenticated
+                                if (!isset($_SESSION['user_id'])) {
+                                    // Redirect to login page if not authenticated
+                                    header('Location: ../../login.html');
+                                    exit();
+                                }
 
-// Fetch the user's role from the session
-$userRole = $_SESSION['user_role'];
+                                // Fetch the user's role from the session
+                                $userRole = $_SESSION['user_role'];
 
-// Fetch the logged-in user's access to bazaars
-$query = "SELECT b.id, b.bazaar_name, b.bazaar_opentime, b.bazaar_closetime, b.bazaar_result
+                                // Fetch the logged-in user's access to bazaars
+                                $query = "SELECT b.id, b.bazaar_name, b.bazaar_opentime, b.bazaar_closetime, b.bazaar_result
 FROM bazaar b
 JOIN users u ON u.user_id = b.bazaar_access_to_users
 WHERE u.user_id = ?";
 
-$stmt = $conn->prepare($query);
-$stmt->bind_param('i', $_SESSION['user_id']);
-$stmt->execute();
-$result = $stmt->get_result();
+                                $stmt = $conn->prepare($query);
+                                $stmt->bind_param('i', $_SESSION['user_id']);
+                                $stmt->execute();
+                                $result = $stmt->get_result();
 
-// Display bazaar information
-
-?>
+                                // Display bazaar information
+                                
+                                ?>
                             </div>
                         </div>
                     </div>
 
-<div class="row">
-    <?php
-    // Display bazaar information
-    while ($row = $result->fetch_assoc()) {
-    ?>
-        <div class="col-xl-3 col-md-6">
-            <div class="card">
-                <div class="card-body widget-user">
-                    <div class="text-center">
-                        <h2 class="fw-normal text-primary"><?php echo $row['bazaar_name']; ?></h2>
-                        <h5>Bazaar Name</h5>
+                    <div class="row">
+                        <?php
+                        // Display bazaar information
+                        while ($row = $result->fetch_assoc()) {
+                            ?>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body widget-user">
+                                        <div class="text-center">
+                                            <h2 class="fw-normal text-primary">
+                                                <?php echo $row['bazaar_name']; ?>
+                                            </h2>
+                                            <h5>Bazaar Name</h5>
+                                        </div>
+                                    </div>
+
+                                    <form class="update-form">
+                                        <input type="hidden" name="bazaar_id" value="<?php echo $row['id']; ?>">
+                                        <!-- <input type="text" name="bazaar_opentime" placeholder="Open Time" value=""> -->
+                                        <!-- <input type="text" name="bazaar_closetime" placeholder="Close Time" value=""> -->
+
+                                        <?php
+                                        $open_time = date("g:i A", strtotime($row["bazaar_opentime"]));
+                                        $close_time = date("g:i A", strtotime($row["bazaar_closetime"]));
+                                        ?>
+                                        <p>Open Time: <span><b>
+                                                    <?php echo $open_time; ?>
+                                                </b></span><br> Close Time: <span><b>
+                                                    <?php echo $close_time; ?>
+                                                </b></span></p>
+
+                                        <p>Result Update:</p>
+                                        <input type="text" name="bazaar_result" placeholder="Result"
+                                            value="<?php echo $row['bazaar_result']; ?>"> <br>
+                                        <button type="button" class="submit-button">Submit</button>
+                                        <div class="response-message"></div>
+                                    </form>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                        // Close the database connection
+                        $conn->close();
+                        ?>
                     </div>
-                </div>
-
-                <form class="update-form">
-                    <input type="hidden" name="bazaar_id" value="<?php echo $row['id']; ?>">
-                    <!-- <input type="text" name="bazaar_opentime" placeholder="Open Time" value=""> -->
-                    <!-- <input type="text" name="bazaar_closetime" placeholder="Close Time" value=""> -->
-                    <p>Open Time: <span><?php echo $row['bazaar_opentime']; ?></span> Close Time: <span><?php echo $row['bazaar_closetime']; ?></span></p>
-
-                    <p>Result Update:</p>
-                    <input type="text" name="bazaar_result" placeholder="Result" value="<?php echo $row['bazaar_result']; ?>"> <br>
-                    <button type="button" class="submit-button">Submit</button>
-                    <div class="response-message"></div>
-                </form>
-            </div>
-        </div>
-    <?php
-    }
-    // Close the database connection
-    $conn->close();
-    ?>
-</div>
 
 
                     <!-- end row -->
@@ -300,49 +314,49 @@ $result = $stmt->get_result();
     <script src="assets/js/app.min.js"></script>
 
     <script>
-$(document).ready(function() {
-    // AJAX form submission
-    $(".submit-button").on("click", function() {
-        var form = $(this).closest("form");
-        var formData = form.serialize();
+        $(document).ready(function () {
+            // AJAX form submission
+            $(".submit-button").on("click", function () {
+                var form = $(this).closest("form");
+                var formData = form.serialize();
 
-        $.ajax({
-            type: "POST",
-            url: "./assets/php/update-bazar.php",
-            data: formData,
-            dataType: "json", // Expect JSON response
-            success: function(response) {
-                // Check if the request was successful
-                if (response.success) {
-                    // Display success message
-                    $(".response-message").html('<div class="alert alert-success">' + response.message + '</div>');
-                } else {
-                    // Display error message
-                    $(".response-message").html('<div class="alert alert-danger">' + response.message + '</div>');
-                }
-            }
+                $.ajax({
+                    type: "POST",
+                    url: "./assets/php/update-bazar.php",
+                    data: formData,
+                    dataType: "json", // Expect JSON response
+                    success: function (response) {
+                        // Check if the request was successful
+                        if (response.success) {
+                            // Display success message
+                            $(".response-message").html('<div class="alert alert-success">' + response.message + '</div>');
+                        } else {
+                            // Display error message
+                            $(".response-message").html('<div class="alert alert-danger">' + response.message + '</div>');
+                        }
+                    }
+                });
+            });
         });
-    });
-});
 
-</script>
+    </script>
 
-<script type="text/javascript">
-    function toggleLeftSideMenu() {
-var leftSideMenu = document.querySelector('.left-side-menu');
-if (leftSideMenu.style.display === 'none' || leftSideMenu.style.display === '') {
-leftSideMenu.style.display = 'block';
-} else {
-leftSideMenu.style.display = 'none';
-}
-}
-$(document).ready(function() {
-$('#toggleButton').click(function() {
-$('.left-side-menu').toggle();
-});
-});
+    <script type="text/javascript">
+        function toggleLeftSideMenu() {
+            var leftSideMenu = document.querySelector('.left-side-menu');
+            if (leftSideMenu.style.display === 'none' || leftSideMenu.style.display === '') {
+                leftSideMenu.style.display = 'block';
+            } else {
+                leftSideMenu.style.display = 'none';
+            }
+        }
+        $(document).ready(function () {
+            $('#toggleButton').click(function () {
+                $('.left-side-menu').toggle();
+            });
+        });
 
-</script>
+    </script>
 
 </body>
 
